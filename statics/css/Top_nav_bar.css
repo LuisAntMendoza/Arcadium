@@ -1,0 +1,49 @@
+body{
+  background-color: #404278;
+  margin: 0;
+}
+.Boton{
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: "RobotoMono-Medium";
+  font-size: 20px;
+  padding: 10px 15px;
+  text-shadow: 2px 2px 6px #000000;
+}
+.Top_bar{
+  background-color: #555555;/*Color por deafult*/
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  overflow: hidden;
+}
+.Boton i{
+  padding: 0 10px;
+}
+.Boton:hover{
+  background-color: #292929;/*Color por deafult*/
+}
+.Boton:hover i{
+  animation-name: Girar;
+  animation-duration: 1s;
+}
+@font-face {
+  font-family: "RobotoMono-Medium";
+  src: url("../Fonts/RobotoMono-Medium.ttf");
+}
+@keyframes Girar {
+  25%{
+    transform: rotateY(180deg);
+  }
+}
+@media screen AND (max-width:650px){
+   .Boton i{
+     display: none;
+     padding: 0 10px;
+   }
+   .Boton{
+     text-align: center;
+     width: 25%;
+   }
+}

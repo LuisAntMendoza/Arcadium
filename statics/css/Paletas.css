@@ -1,0 +1,24 @@
+/*Para la paleta de colores 1*/
+.Paleta_1.Top_bar{
+  background-color: #A15B9F;
+}
+.Paleta_1 >.Boton:Hover{
+  background-color: #774375;
+}
+
+/*Paleta de colores 2*/
+.Paleta_2.Top_bar{
+  background-color: #13289D;
+}
+
+.Paleta_2 >.Boton:Hover{
+  background-color: #0f207c;
+}
+
+/*Para la paleta de colores 3*/
+.Paleta_3 >.Boton:Hover{
+  background-color: #db3700;
+}
+.Paleta_3.Top_bar{
+  background-color: #F03C00;
+}

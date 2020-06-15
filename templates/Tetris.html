@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <link rel="stylesheet" href="../statics/Tetris/css/Tetris.css">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../statics/Tetris/css/Tetris.css">
+    <link rel="stylesheet" href="../libs/fontawesome_free-5-13-0/css/all.css">
+    <link rel="stylesheet" href="../statics/css/Paletas.css">
+    <link rel="stylesheet" href="../statics/css/Top_nav_bar.css">
     <title></title>
   </head>
   <body>
+    <nav class="Top_bar">
+      <span class="Boton" id="Inicio"><i class="fas fa-home"></i>Inicio</span>
+      <span class="Boton" id="Juegos"><i class="fas fa-gamepad"></i>Juegos</span>
+      <span class="Boton" id="Puntajes"><i class="fas fa-star"></i>Puntajes</span>
+      <span class="Boton" id="Creditos"><i class="fas fa-laptop-code"></i>Créditos</span>
+    </nav>
     <div id="Tetris_Juego">
       <div id="Tablero">
 
@@ -25,6 +34,7 @@
         <button type="button" id="Musica" class="Si">Musica</button>
       </div>
     </div>
+    <script src="../dynamics/Barra_navegacion.js" charset="utf-8"></script>
     <script src="../dynamics/Tetris/Tetrimonios.js" charset="utf-8"></script>
     <script src="../dynamics/Tetris/Funciones_Tetris.js" charset="utf-8"></script>
     <script src="../dynamics/Tetris/Tetris.js" charset="utf-8"></script>
