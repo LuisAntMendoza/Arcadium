@@ -10,6 +10,7 @@ body{
   font-size: 20px;
   padding: 10px 15px;
   text-shadow: 2px 2px 6px #000000;
+  user-select: none;
 }
 .Top_bar{
   background-color: #555555;/*Color por deafult*/

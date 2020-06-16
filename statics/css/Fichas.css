@@ -1,0 +1,89 @@
+img{
+  width: 100%;
+  height: 200px;
+}
+#Lista_Juegos{
+  position: relative;
+  left: 5%;
+  width: 90%;
+  top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.Encabezado{
+  background-color: #555555;
+  font-family: "PressStart2P-Regular";
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  text-shadow: 4px 4px 8px #000000;
+}
+.Ficha_juego{
+  color: white;
+  margin: 10px;
+  width: 30%;
+  background-color: #adadad;
+  opacity: 0.85;
+}
+.Ficha_juego:hover{
+  opacity: 1;
+}
+.contenido{
+  font-family: "Mukta-Regular";
+  padding: 10px;
+  overflow: hidden;
+  text-align: justify;
+  height: 200px;
+}
+button:focus {
+   outline: none;
+ }
+.Jugar{
+  color: white;
+  width: 120px;
+  margin: 15px auto;
+  font-family: "PressStart2P-Regular";
+  background-color: #555555;
+  padding: 12px 15px;
+  text-align: center;
+  text-shadow: 2px 2px 5px #000000;
+  border-radius: 5px;
+  display: block;
+}
+.Titulo{
+  text-align: center;
+  font-family: "RobotoMono-Medium";
+  margin: 5px auto;
+  font-size: 2em;
+}
+@font-face {
+  font-family: "PressStart2P-Regular";
+  src: url("../Fonts/PressStart2P-Regular.ttf");
+}
+@font-face {
+  font-family: "RobotoMono-Medium";
+  src: url("../Fonts/RobotoMono-Medium.ttf");
+}
+@font-face {
+  font-family: "Mukta-Regular";
+  src: url("../Fonts/Mukta-Regular.ttf");
+}
+@media screen AND (max-width:900px){
+  #Lista_Juegos{
+    flex-direction: column;
+  }
+  .Ficha_juego{
+    position: relative;
+    left: 10%;
+    width: 80%;
+  }
+  img{
+    height: 250px;
+  }
+  .contenido{
+    height: 150px;
+  }
+}

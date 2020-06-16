@@ -5,14 +5,32 @@
 .Paleta_1 >.Boton:Hover{
   background-color: #774375;
 }
+.Paleta_1>.Encabezado {
+  background-color: #A15B9F;
+}
+.Paleta_1 >.Ficha_juego >.Jugar{
+  background-color: #EA63E6;
+}
+.Paleta_1 >.Ficha_juego{
+  background-color: #7B51C9;
+}
+
 
 /*Paleta de colores 2*/
 .Paleta_2.Top_bar{
   background-color: #13289D;
 }
-
 .Paleta_2 >.Boton:Hover{
   background-color: #0f207c;
+}
+.Paleta_2>.Encabezado {
+  background-color: #13289D;
+}
+.Paleta_2>.Ficha_juego >.Jugar{
+  background-color: #0DB0D2;
+}
+.Paleta_2>.Ficha_juego{
+  background-color: #452CAE;
 }
 
 /*Para la paleta de colores 3*/
@@ -21,4 +39,13 @@
 }
 .Paleta_3.Top_bar{
   background-color: #F03C00;
+}
+.Paleta_3>.Encabezado {
+  background-color: #db3700;
+}
+.Paleta_3>.Ficha_juego >.Jugar{
+  background-color: #F36700;
+}
+.Paleta_3>.Ficha_juego{
+  background-color: #F08444;
 }

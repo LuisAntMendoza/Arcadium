@@ -1,9 +1,17 @@
+Paleta = getCookie("Paleta")
+if (Paleta=="Azul") {
+  $(".Top_bar").addClass("Paleta_2")
+}else if (Paleta=="Naranja"){
+  $(".Top_bar").addClass("Paleta_3")
+}else {
+    $(".Top_bar").addClass("Paleta_1")
+}
 $("#Inicio").click(()=>{
   console.log("Enviar al Inicio");
 });
 
 $("#Juegos").click(()=>{
-  console.log("Muestra todos los juegos");
+  window.location ="../templates/Juegos.html"
 });
 
 $("#Puntajes").click(()=>{
