@@ -14,7 +14,18 @@
 .Paleta_1 >.Ficha_juego{
   background-color: #7B51C9;
 }
-
+.Paleta_1 >.Ficha_juego{
+  background-color: #7B51C9;
+}
+.Paleta_1 > .Creditos-cont >.Titulo{
+  background-color: #774375;
+}
+.Paleta_1 > .Creditos-cont > h2{
+  color: #774375;
+}
+#Lista_Juegos.Paleta_1{
+  background-color: rgba(161, 91, 159, 0.5);
+}
 
 /*Paleta de colores 2*/
 .Paleta_2.Top_bar{
@@ -26,12 +37,25 @@
 .Paleta_2>.Encabezado {
   background-color: #13289D;
 }
+.Paleta_2>.Ficha_juego{
+  background-color: #452CAE;
+}
+#Lista_Juegos.Paleta_2{
+  background-color: rgba(108, 147, 204, 0.5);
+}
 .Paleta_2>.Ficha_juego >.Jugar{
   background-color: #0DB0D2;
 }
 .Paleta_2>.Ficha_juego{
   background-color: #452CAE;
 }
+.Paleta_2 > .Creditos-cont >.Titulo{
+  background-color: #0f207c;
+}
+.Paleta_2 > .Creditos-cont > h2{
+  color: #0f207c;
+}
+
 
 /*Para la paleta de colores 3*/
 .Paleta_3 >.Boton:Hover{
@@ -46,6 +70,15 @@
 .Paleta_3>.Ficha_juego >.Jugar{
   background-color: #F36700;
 }
+#Lista_Juegos.Paleta_3{
+  background-color: rgba(240, 60, 0, 0.5);
+}
 .Paleta_3>.Ficha_juego{
   background-color: #F08444;
+}
+.Paleta_3 > .Creditos-cont >.Titulo{
+  background-color: #db3700;
+}
+.Paleta_3 > .Creditos-cont > h2{
+  color: #db3700;
 }

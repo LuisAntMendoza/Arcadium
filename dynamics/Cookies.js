@@ -13,4 +13,3 @@ function getCookie(cname) {
   }
   return "";
 }
-console.log("HOLA SOY UN ARCHIVO ENLAZADO");

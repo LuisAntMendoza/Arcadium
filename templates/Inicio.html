@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../libs/fontawesome_free-5-13-0/css/all.css">
     <link rel="stylesheet" href="../statics/css/Paletas.css">
+    <link rel="stylesheet" href="../statics/css/Creditos_modales.css">
     <link rel="stylesheet" href="../statics/css/Top_nav_bar.css">
+    <link rel="stylesheet" href="../statics/css/Fichas.css">
     <title></title>
 </head>
 
@@ -22,14 +24,14 @@
         <span class="Boton" id="Puntajes"><i class="fas fa-star"></i>Puntajes</span>
         <span class="Boton" id="Creditos"><i class="fas fa-laptop-code"></i>Créditos</span>
     </nav>
-    <section>
+    <section id="Bienvenida">
         <div class="bienvenida">
             <h1>¡Bienvenido a "Nombre"!</h1>
         </div>
         <div class="contCarrusel">
             <div id="carruselInicio" class="carousel slide carousel-fade" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active ">
                         <img src="../statics/img/Tetris-img-ref.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
@@ -53,6 +55,29 @@
             </div>
         </div>
     </section>
+    <section id="Lista_Juegos">
+      <div class="Encabezado">
+        <h1>Juegos del momento</h1>
+      </div>
+      <div class="Ficha_juego">
+        <img src="../statics/img/Tetris-img-ref.jpg" alt="Imagen Tetris">
+        <div class="contenido">
+          <h1 class="Titulo">Tetris</h1>
+            El clásico Tetris con música renovada, intenta ganarle a tus
+            amigos y llega a acumluar la mayor cantidad de filas para asi hacer tetris.
+        </div>
+        <button type="button" class="Jugar" name="Tetris">JUGAR</button>
+      </div>
+      <div class="Ficha_juego">
+        <img src="../statics/img/Buscaminas-img-ref.jpg" alt="Imagen Tetris">
+        <div class="contenido">
+          <h1 class="Titulo">Buscaminas</h1>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <button type="button" class="Jugar" name="Buscaminas">JUGAR</button>
+      </div>
+    </section>
+    <script src="../dynamics/Lista_Juegos.js" charset="utf-8"></script>
     <script src="../dynamics/Barra_navegacion.js" charset="utf-8"></script>
 </body>
 

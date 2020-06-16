@@ -11,6 +11,7 @@ img{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .Encabezado{
   background-color: #555555;

@@ -2,56 +2,12 @@
   font-family: "PressStart2P-Regular";
   src: url("../../Fonts/PressStart2P-Regular.ttf");
 }
-h2{
-  color: #fc00ce;
-  font-family: "PressStart2P-Regular";
-  font-size: 15px;
-}
 button{
   font-family: "PressStart2P-Regular";
   margin-top: 10px;
   padding: 3px;
   color: white;
   border: 5px solid #430078;
-}
-#Tetris_Juego{
-  padding: 2%;
-  position: relative;
-  background-color: #831279;
-  width: 80%;
-  left: 8%;
-  height: 550px;
-}
-#Tablero{
-  position: relative;
-  width: 250px;
-  height: auto;
-  background-color: #1d1d1d;
-  border: 5px solid #430078;
-  top: 2%;
-  left: 20%
-}
-#Proxima_Figura{
-  width: 125px;
-  height: 125px;
-  left: 22%;
-}
-#Total_Filas{
-  width: 150px;
-  height: 50px;
-  left: 18%;
-}
-#Puntaje{
-  width: 150px;
-  height: 50px;
-  left: 18%;
-}
-#Info{
-  text-align: center;
-  padding: 15px;
-  width: 250px;
-  left: 68%;
-  bottom: 500px;
 }
 .Informacion{
   position: relative;
@@ -103,4 +59,53 @@ button{
   background-color: #0ab100;
 }.No{
   background-color: #e20000;
+}
+#Tetris_Juego{
+  padding: 2%;
+  position: relative;
+  background-color: #831279;
+  width: 80%;
+  left: 8%;
+  height: 550px;
+}
+#Tablero{
+  position: relative;
+  width: 250px;
+  height: auto;
+  background-color: #1d1d1d;
+  border: 5px solid #430078;
+  top: 2%;
+  left: 20%
+}
+#Info{
+  text-align: center;
+  padding: 15px;
+  width: 250px;
+  left: 68%;
+  bottom: 500px;
+}
+#Puntaje{
+  width: 150px;
+  height: 50px;
+  left: 18%;
+}
+#Proxima_Figura{
+  width: 125px;
+  height: 125px;
+  left: 22%;
+}
+#Total_Filas{
+  width: 150px;
+  height: 50px;
+  left: 18%;
+}
+#Info > h2{
+  color: #fc00ce;
+  font-family: "PressStart2P-Regular";
+  font-size: 15px;
+}
+@media screen AND (max-width:1080px) {
+  #Info{
+    display: none;
+  }
 }
