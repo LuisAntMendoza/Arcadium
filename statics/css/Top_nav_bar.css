@@ -1,50 +1,130 @@
-body{
-  background-color: #404278;
-  margin: 0;
+body {
+    background-color: #404278;
+    margin: 0;
 }
-.Boton{
-  color: white;
-  cursor: pointer;
-  display: block;
-  font-family: "RobotoMono-Medium";
-  font-size: 20px;
-  padding: 10px 15px;
-  text-shadow: 2px 2px 6px #000000;
-  user-select: none;
+
+.Boton {
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: "RobotoMono-Medium";
+    font-size: 20px;
+    padding: 10px 15px;
+    text-shadow: 2px 2px 6px #000000;
+    user-select: none;
 }
-.Top_bar{
-  background-color: #555555;/*Color por deafult*/
-  display: flex;
-  flex-direction: row;
-  height: 50px;
-  overflow: hidden;
+
+.Top_bar {
+    background-color: #555555;
+    /*Color por deafult*/
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    overflow: hidden;
 }
-.Boton i{
-  padding: 0 10px;
+
+.carrFade {
+    background-color: black;
+    height: 450px;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
-.Boton:hover{
-  background-color: #292929;/*Color por deafult*/
+
+.carrTexto {
+    color: white;
+    height: 450px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
-.Boton:hover i{
-  animation-name: Girar;
-  animation-duration: 1s;
+
+.contCarrusel {
+    margin: 40px 20%;
+    position: relative;
+    width: 60%;
 }
+
+.bienvenida {
+    background-color: purple;
+    border-radius: 30px;
+    color: white;
+    margin: 40px 15%;
+    padding: 10px 0;
+    text-align: center;
+    width: 70%;
+}
+
+.botonesInicio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.botonInicio {
+    background-color: purple;
+    border-radius: 30px;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 35%;
+}
+
+.carrTexto h3 {
+    margin-top: 15%;
+}
+
+.Boton i {
+    padding: 0 10px;
+}
+
+.Boton:hover {
+    background-color: #292929;
+    /*Color por deafult*/
+}
+
+.Boton:hover i {
+    animation-name: Girar;
+    animation-duration: 1s;
+}
+
+#carruselInicio {
+    z-index: 0;
+}
+
+#carruselInicio .carousel-inner {
+    height: 100%;
+}
+
+#carruselInicio img {
+    height: 450px;
+    width: 100%;
+}
+
 @font-face {
-  font-family: "RobotoMono-Medium";
-  src: url("../Fonts/RobotoMono-Medium.ttf");
+    font-family: "RobotoMono-Medium";
+    src: url("../Fonts/RobotoMono-Medium.ttf");
 }
+
 @keyframes Girar {
-  25%{
-    transform: rotateY(180deg);
-  }
+    25% {
+        transform: rotateY(180deg);
+    }
 }
-@media screen AND (max-width:650px){
-   .Boton i{
-     display: none;
-     padding: 0 10px;
-   }
-   .Boton{
-     text-align: center;
-     width: 25%;
-   }
+
+@media screen AND (max-width:650px) {
+    .Boton i {
+        display: none;
+        padding: 0 10px;
+    }
+
+    .Boton {
+        text-align: center;
+        width: 25%;
+    }
 }

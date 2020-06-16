@@ -1,22 +1,59 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../libs/jQuery/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="../dynamics/Cookies.js" charset="utf-8"></script>
+    <script src="../libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../libs/fontawesome_free-5-13-0/css/all.css">
     <link rel="stylesheet" href="../statics/css/Paletas.css">
     <link rel="stylesheet" href="../statics/css/Top_nav_bar.css">
     <title></title>
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="Top_bar">
         <span class="Boton" id="Inicio"><i class="fas fa-home"></i>Inicio</span>
         <span class="Boton" id="Juegos"><i class="fas fa-gamepad"></i>Juegos</span>
         <span class="Boton" id="Puntajes"><i class="fas fa-star"></i>Puntajes</span>
         <span class="Boton" id="Creditos"><i class="fas fa-laptop-code"></i>Créditos</span>
     </nav>
+    <section>
+        <div class="bienvenida">
+            <h1>¡Bienvenido a "Nombre"!</h1>
+        </div>
+        <div class="contCarrusel">
+            <div id="carruselInicio" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../statics/img/Tetris-img-ref.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../statics/img/Buscaminas-img-ref.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="carrFade"></div>
+            <div class="carrTexto">
+                <h3>Descripción</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+        <div class="botonesInicio">
+            <div class="botonInicio">
+                <h4>Conoce nuestros juegos</h4>
+            </div>
+            <div class="botonInicio">
+                <h4>Conoce a los mejores jugadores</h4>
+            </div>
+        </div>
+    </section>
     <script src="../dynamics/Barra_navegacion.js" charset="utf-8"></script>
-  </body>
+</body>
+
 </html>
