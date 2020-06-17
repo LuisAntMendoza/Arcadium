@@ -1,0 +1,76 @@
+.carrFade {
+    background-color: black;
+    height: 450px;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.carrTexto {
+    font-size: 15px;
+    color: white;
+    height: 450px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.contCarrusel {
+    margin: 40px 20%;
+    position: relative;
+    width: 60%;
+}
+
+.bienvenida {
+    background-color: #555555;
+    border-radius: 30px;
+    color: white;
+    margin: 40px 15%;
+    padding: 10px 0;
+    text-align: center;
+    width: 70%;
+}
+
+.botonesInicio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.botonInicio {
+    cursor: pointer;
+    background-color: #555555;
+    border-radius: 30px;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 35%;
+}
+
+.carrTexto h3 {
+    margin-top: 15%;
+}
+.bienvenida{
+  font-family: "PressStart2P-Regular";
+}
+#carruselInicio {
+    z-index: 0;
+}
+
+#carruselInicio .carousel-inner {
+    height: 100%;
+}
+
+#carruselInicio img {
+    height: 450px;
+    width: 100%;
+}
+@font-face {
+  font-family: "PressStart2P-Regular";
+  src: url("../Fonts/PressStart2P-Regular.ttf");
+}
