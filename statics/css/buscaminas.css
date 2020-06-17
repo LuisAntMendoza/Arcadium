@@ -1,0 +1,27 @@
+.tablero {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contTablero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablero div {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #909090;
+    text-align: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contPersonalizado {
+    display: none;
+}
