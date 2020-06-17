@@ -393,38 +393,37 @@ function FilasHechas() {
       document.getElementById("Datos_Juego-cont").appendChild(Mensaje)
       document.getElementById("Datos_Juego-cont").appendChild(PuntuacionFinal)
       //Consulta los maxscore en tetris
-      for (var i = 3; i > 0; i--) {
-        var Posicion=100;
-        if (Puntuacion> getCookie("MaxScore-Tetris-"+i)) {
-          var Posicion=i;
-        }
-      }
-      if (Posicion>=1 && Posicion<=3) {
-        console.log(Posicion+">=1 && "+Posicion+"<=3");
-        var MaxScore = document.createElement("h3")
-        MaxScore.innerText="Tu puntuacion esta dentro de las tres mas altas, ingresa tu nombre";
-        var Nombre = document.createElement("input")
-        Nombre.type = "text"
-        Nombre.maxLength= 3
-        NombreMaxScore=""
-        Nombre.addEventListener("input", ()=>{
-          NombreMaxScore=Nombre.value;
-          console.log(NombreMaxScore);
-          if (NombreMaxScore="") {
-            document.cookie ="MaxScore-Tetris-"+Posicion+"Nom=---";
-          }
-          document.cookie ="MaxScore-Tetris-"+Posicion+"Nom="+NombreMaxScore;
-        })
-        document.cookie ="MaxScore-Tetris-"+Posicion+"="+Puntuacion;
-        document.getElementById("Datos_Juego-cont").appendChild(MaxScore)
-        document.getElementById("Datos_Juego-cont").appendChild(Nombre)
-        console.log("Se agrego nombre?");
-      }
+      /*Cookie por trabvajar*/
+      // for (var i = 3; i > 0; i--) {
+      //   var Posicion=100;
+      //   if (Puntuacion> getCookie("MaxScore-Tetris-"+i)) {
+      //     var Posicion=i;
+      //   }
+      // }
+      // if (Posicion>=1 && Posicion<=3) {
+      //   console.log(Posicion+">=1 && "+Posicion+"<=3");
+      //   var MaxScore = document.createElement("h3")
+      //   MaxScore.innerText="Tu puntuacion esta dentro de las tres mas altas, ingresa tu nombre";
+      //   var Nombre = document.createElement("input")
+      //   Nombre.type = "text"
+      //   Nombre.maxLength= 3
+      //   NombreMaxScore=""
+      //   Nombre.addEventListener("input", ()=>{
+      //     NombreMaxScore=Nombre.value;
+      //     console.log(NombreMaxScore);
+      //     if (NombreMaxScore="") {
+      //       document.cookie ="MaxScore-Tetris-"+Posicion+"Nom=---";
+      //     }
+      //     document.cookie ="MaxScore-Tetris-"+Posicion+"Nom="+NombreMaxScore;
+      //   })
+      //   document.cookie ="MaxScore-Tetris-"+Posicion+"="+Puntuacion;
+      //   document.getElementById("Datos_Juego-cont").appendChild(MaxScore)
+      //   document.getElementById("Datos_Juego-cont").appendChild(Nombre)
+      //   console.log("Se agrego nombre?");
+      // }
       // document.getElementById("Datos_Juego-cont").appendChild(VolverPlay)
-      setTimeout(()=>{
       document.getElementById("Datos_Juego-cont").appendChild( document.createElement("br"))
       document.getElementById("Datos_Juego").style.display = "inherit";
-    }, 100)
       setTimeout(()=>{
         Game_Over.play()
       }, 200)

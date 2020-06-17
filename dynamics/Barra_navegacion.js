@@ -10,10 +10,56 @@ Contenido.append( "<h2>Integrantes del equipo</h2>");
 Contenido.append( "<h4>Rodrigo</h4>","<h4>Mendoza Ramirez Luis Antonio</h4>");
 Contenido.append( "<h4>Vapnik</h4>","<h4>Villafranca Hernández Carlos Iván</h4>");
 Creditos.append(Contenido);
-$(".Top_bar").append(Creditos )
-
+$(".Top_bar").append(Creditos)
+//Csao de primera vex
 /*Obtiene el valor de los colores de la paleta  a aplicar*/
+NombreUs = getCookie("NombreUs")
 Paleta = getCookie("Paleta")
+if (getCookie("NombreUs")=="" ||  getCookie("Paleta")=="") {
+  $("head").append( "<link rel='stylesheet' href='../statics/css/Captura-datos.css'>")
+  let Captura = $("<div id='Captura-mostar'>")
+  Captura.addClass("Captura-datos")
+  let Contenido = $("<div>")
+  Contenido.addClass("Captura-cont")
+  Contenido.append( "<h1 class='Titulo'>Bienvenido</h1>");
+  Contenido.append( "<h2>Veo que es la primera vez que ingresas, llena estos datos</h2>");
+  Contenido.append( "<h3>Paleta de color</h3>");
+  if (getCookie("Paleta")!="") {
+    Contenido.append("<h4 id='ColorSelect'>Color seleccionado "+getCookie("Paleta")+"</h4>");
+  }else {
+    Contenido.append("<h4 id='ColorSelect'>Color por default Morado</h4>");
+    document.cookie ="Paleta=Morado"
+  }
+  let PaletasCol = $("<div>")
+  PaletasCol.addClass("Paletas_opc")
+  let Colores=["Morado", "Azul", "Naranja"]
+  for (var i = 0; i < Colores.length; i++) {
+    let Butcolores=("<button type='button' class='Butcolores' name='"+Colores[i]+"'></button>")
+    PaletasCol.append(Butcolores)
+  }
+  Contenido.append(PaletasCol)
+  Contenido.append("<h3>Nombre de Usuario</h3>");
+  Contenido.append("<h4>Maximo 6 letras</h4>");
+  var NomUsu=$("<input type='text' id='NombreUs' placeholder='NOM' maxlength='6' required>")
+  Contenido.append(NomUsu);
+  var Continuar=$("<input type='submit'  value='Continuar'>")
+  Contenido.append(Continuar);
+  Captura.append(Contenido);
+  $("body").prepend(Captura)
+  $(".Butcolores").each((ind, elem) => {
+    $(elem).click(()=>{
+      $("#ColorSelect").text("Color seleccionado "+elem.name)
+      document.cookie ="Paleta="+elem.name
+    })
+  })
+  NomUsu.on("input",()=>{
+    NomUsu.val(NomUsu.val().toUpperCase());
+    document.cookie ="NombreUs="+NomUsu.val()
+  })
+  Continuar.click(()=>{
+    location.reload();
+  })
+}
 if (Paleta=="Azul") {
   $(".Top_bar").addClass("Paleta_2")
   Creditos.addClass("Paleta_2")
