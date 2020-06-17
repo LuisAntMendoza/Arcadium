@@ -67,6 +67,7 @@ button{
   width: 80%;
   left: 8%;
   height: 550px;
+  margin-top: 30px;
 }
 #Tablero{
   position: relative;
@@ -99,6 +100,9 @@ button{
   height: 50px;
   left: 18%;
 }
+button:focus {
+   outline: none;
+ }
 #Info > h2{
   color: #fc00ce;
   font-family: "PressStart2P-Regular";

@@ -10,26 +10,29 @@ var Proxima_Figura= document.getElementById("Proxima_Figura")
 ///////////////////////////////////////////////////////////////////////////////
 //////*******  Generacion del terreno de juego y prox Tet  **********//////////
 ///////////////////////////////////////////////////////////////////////////////
-
-for (var i = 0; i < FILAS; i++) {
-  var Fila= document.createElement("div")
-  Fila.classList.add("Columna")
-  Tablero.appendChild(Fila);
-  for (var n = 0; n < COLUMNAS; n++) {
-    var Celda =  document.createElement("div");
-    Celda.classList.add("celda");
-    Tablero.children[i].appendChild(Celda);
+function CrearTerreno() {
+  for (var i = 0; i < FILAS; i++) {
+    var Fila= document.createElement("div")
+    Fila.classList.add("Columna")
+    Tablero.appendChild(Fila);
+    for (var n = 0; n < COLUMNAS; n++) {
+      var Celda =  document.createElement("div");
+      Celda.classList.add("celda");
+      Tablero.children[i].appendChild(Celda);
+    }
   }
 }
 ////////////////////////////  Proxima Figura  ///////////////////////////////////
-for (var i = 0; i < 6; i++) {
-  var Fila= document.createElement("div")
-  Fila.classList.add("Columna")
-  Proxima_Figura.appendChild(Fila);
-  for (var n = 0; n < 6; n++) {
-    var Celda =  document.createElement("div");
-    Celda.classList.add("celda");
-    Proxima_Figura.children[i].appendChild(Celda);
+function CrearProxFig() {
+  for (var i = 0; i < 6; i++) {
+    var Fila= document.createElement("div")
+    Fila.classList.add("Columna")
+    Proxima_Figura.appendChild(Fila);
+    for (var n = 0; n < 6; n++) {
+      var Celda =  document.createElement("div");
+      Celda.classList.add("celda");
+      Proxima_Figura.children[i].appendChild(Celda);
+    }
   }
 }
 
@@ -107,10 +110,6 @@ function GenerarTet() {
   DibujarTet(FilAct, CeldAct, RotarFig)
   DibujarNext()
 }
-///////////////////////////////////////////////////////////////////////////////
-/////////////******   Funcion del ovimiento del juego   ******/////////////////
-///////////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
 //////////**** Funciones colisiones de las piezas en el juego ******///////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -329,7 +328,9 @@ function FilasHechas() {
     }else{
       Destroy_Row.play()
     }
-    Velocidad-=20;
+    if (Velocidad>100) {
+      Velocidad=Velocidad-20;
+    }
     Puntuacion+=Math.pow((FilasAremover.length)*10, 2)
     FilasDestruidas+=FilasAremover.length
     document.getElementById("FilasD").innerHTML = FilasDestruidas;
@@ -353,7 +354,6 @@ function FilasHechas() {
   function ModifcarPuntaje(Puntuacion){
     document.getElementById("Puntuacion").innerHTML = Puntuacion;
   }
-
   function SeguirVivo() {
     for (var i = 0; i < 4; i++) {
       for (var n = 0; n < COLUMNAS; n++) {
@@ -364,6 +364,35 @@ function FilasHechas() {
     }
     if (!Vivo) {
       Musica_Fondo_1.pause()
+      let VolverPlay = document.createElement("button")
+      VolverPlay.innerText="Volver a jugar"
+      VolverPlay.addEventListener("click", ()=>{
+        Velocidad = 1100;
+        Puntuacion = 0;
+        FilasDestruidas = 0;
+        Vivo=true;
+        Tablero.innerHTML= ""
+        Proxima_Figura.innerHTML= ""
+        CrearTerreno()
+        CrearProxFig()
+        ModifcarPuntaje(Puntuacion);
+        document.getElementById("FilasD").innerHTML = FilasDestruidas;
+        document.getElementById("Datos_Juego").style.display = "none";
+        Tetris(Velocidad);
+        DibujarTet(FilAct, CeldAct, RotarFig)
+        DibujarNext()
+        Musica_Fondo_1.play()
+      })
+      let Mensaje = document.createElement("h1")
+      Mensaje.innerText="Has perdido :("
+      let PuntuacionFinal = document.createElement("h3")
+      PuntuacionFinal.innerText="Tu puntuacion es de "+Puntuacion;
+      document.getElementById("Datos_Juego-cont").innerHTML= ""
+      document.getElementById("Datos_Juego-cont").appendChild(Mensaje)
+      document.getElementById("Datos_Juego-cont").appendChild(PuntuacionFinal)
+      document.getElementById("Datos_Juego-cont").appendChild(VolverPlay)
+      document.getElementById("Datos_Juego-cont").appendChild( document.createElement("br"))
+      document.getElementById("Datos_Juego").style.display = "inherit";
       setTimeout(()=>{
         Game_Over.play()
       }, 200)
