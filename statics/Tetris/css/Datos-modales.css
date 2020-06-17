@@ -18,7 +18,6 @@
 }
 .Datos-cont button{
   cursor: pointer;
-  text-decoration: inherit;
   background-color: #831279;
   padding: 10px 0;
   text-shadow: 4px 4px 8px #6f6f6f;
@@ -52,6 +51,19 @@
   width: 60%;
   height: 60%;
 }
+.Datos-cont > input[type=text] {
+  font-family: "PressStart2P-Regular";
+  font-size: 20px;
+  Width: 100px;
+  color white;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid #831279;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.Datos-cont > input[type=text]:focus {
+   outline: none;
+ }
 @font-face {
   font-family: "PressStart2P-Regular";
   src: url("../../Fonts/PressStart2P-Regular.ttf");

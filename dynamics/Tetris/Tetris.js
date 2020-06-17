@@ -69,8 +69,6 @@ function Tetris(caida) {
       }
       SeguirVivo()
       if (SeguirVivo()) {
-        console.log(Velocidad);
-        console.log(FilasDestruidas);
         Tetris(Velocidad)
       }
     }
@@ -107,14 +105,12 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
           DibujarTet(FilAct, CeldAct, RotarFig)
           Fijar.play()
           FilasHechas()
-          console.log(Velocidad);
           GenerarTet()
         }else if (FilAct-ColAbajo(RotarFig)+Tetranomios[TetActual][RotarFig].length==19 && SeguirVivo()) {
           FilAct++;
           DibujarTet(FilAct, CeldAct, RotarFig)
           Fijar.play()
           FilasHechas()
-          console.log(Velocidad);
           GenerarTet()
         }else {
           FilAct++;
@@ -138,13 +134,13 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
   Tetris(Velocidad);
   DibujarTet(FilAct, CeldAct, RotarFig)
   DibujarNext()
-  Musica_Fondo_1.play()
+  // Musica_Fondo_1.play()
 })
 document.getElementById("Controles").addEventListener("click",()=>{
-  let Controles = document.createElement("img")
-  Controles.src="../statics/Tetris/img/Controles.png"
-  Controles.classList.add("imagen-modal")
-  Controles.addEventListener("click",()=>{
+    let Controles = document.createElement("img")
+    Controles.src="../statics/Tetris/img/Controles.png"
+    Controles.classList.add("imagen-modal")
+    Controles.addEventListener("click",()=>{
     Controles.remove()
   })
   document.getElementById("Datos_Juego-cont").appendChild(Controles)
