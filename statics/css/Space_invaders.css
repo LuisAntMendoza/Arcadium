@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "gamer";
+  src: url(../Fonts/PressStart2P-Regular.ttf);
+}
+body{
+  color: red;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+}
+canvas{
+  background-color: black;
+}
+.Puntaje{
+  background-color: green;
+  width: 200px;
+  height: 200px;
+  font-family:"gamer";
+  color: yellow;
+
+}
