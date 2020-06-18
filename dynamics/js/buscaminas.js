@@ -1,48 +1,25 @@
-let minas = undefined;
-let bombas = undefined;
-let ancho = undefined;
-let largo = undefined;
-$(document).ready(() => {
-    $("#jugar").on("click", (e) => {
-        e.preventDefault();
-        $("#tablerominas").html("");
-        if ($("#dificultad").val() == "f") {
-            bombas = 10;
-            ancho = 8;
-            largo = 8;
-        } else if ($("#dificultad").val() == "m") {
-            bombas = 40;
-            ancho = 16;
-            largo = 16;
-        } else if ($("#dificultad").val() == "d") {
-            bombas = 99;
-            ancho = 30;
-            largo = 16;
-        } else if ($("#dificultad").val() == "p") {
-            bombas = $("#bombas").val();
-            ancho = $("#ancho").val();
-            largo = $("#largo").val();
+function cookieTablero(board) {
+    board2 = board.split(",");
+    console.log(board2);
+    let tabla = [];
+    let j = 0;
+    for (let i = 0; i < largo; i++) {
+        tabla[i] = [];
+        for (var k = 0; k < ancho; k++) {
+            tabla[i][k] = board2[j]
+            j++;
         }
-        if (validarTamaño() == true) {
-            $("#tablerominas").css("width", (ancho * 30) + (ancho * 2) + "px");
-            minas = inicializaMatriz(ancho, largo);
-            cargarTablero();
-        } else {
-            $("#tablerominas").html("<h1>El ancho de su pantalla no soporta el número de casillas de ancho ingresado</h1>");
-        }
-    });
-    $("#dificultad").on("change", () => {
-        if ($("#dificultad").val() == "p") {
-            $("#contPersonalizado").css("display", "block");
-        } else {
-            $("#contPersonalizado").css("display", "none");
-        }
-    })
-});
+    }
+    console.log(tabla);
+    return tabla;
+}
 
 function validarTamaño() {
     let regreso = true;
-    if ((ancho * 30) + (ancho * 2) > (window.innerWidth - 16)) {
+    let contenedor = $(".contTablero").css("width");
+    contenedor = contenedor.split("p");
+    let tamContenedor = contenedor[0];
+    if ((ancho * 30) + (ancho * 2) > tamContenedor) {
         regreso = false;
     }
     return regreso;
@@ -78,14 +55,16 @@ function mostrarBandera(e) {
     let auxstr = this.id.split("coma");
     let myid = auxstr[0] + "coma" + auxstr[1];
     divObj = $("#" + myid);
-
     if ($(divObj).css("background-image") !== "none") {
         $(divObj).css("background-image", "none");
         $(divObj).data("bandera", false);
+        arrBanderas[parseInt(auxstr[0])][parseInt(auxstr[1])] = 0;
     } else if ($(divObj).css("background-color") == "rgb(144, 144, 144)") {
         $(divObj).css("background-image", "url(../statics/img/bandera.jpg)");
         $(divObj).data("bandera", true);
+        arrBanderas[parseInt(auxstr[0])][parseInt(auxstr[1])] = 1;
     }
+    document.cookie = "arrBanderasBuscaminas=" + arrBanderas;
     mostrarBanderas();
     valEndGame(minas);
 }
@@ -104,7 +83,9 @@ function mostrarNumero(e) {
     let auxstr = this.id.split("coma");
     let myid = auxstr[0] + "coma" + auxstr[1];
     divObj = $("#" + myid);
-
+    arrClic[parseInt(auxstr[0], 10)][parseInt(auxstr[1], 10)] = 1;
+    document.cookie = "arrClicBuscaminas=" + arrClic;
+    console.log(auxstr);
     if (minas[parseInt(auxstr[0], 10)][parseInt(auxstr[1], 10)] == 0) {
         $(divObj).css("background-color", "rgb(210, 210, 210)");
         $(divObj).css("background-image", "none");
@@ -118,6 +99,7 @@ function mostrarNumero(e) {
             $(divObj).css("background-image", "url(../statics/img/bomba.jpg)");
             abrirTablero(minas);
             alert("Perdiste =(");
+            borrarCookies();
             $("div").off("click");
             $("div").off("contextmenu");
         }
@@ -166,13 +148,13 @@ function generarBombas(tablero) {
     let fil = 0;
     let col = 0;
 
-    fil = Math.floor((Math.random() * (largo - 1)) + 0);
-    col = Math.floor((Math.random() * (ancho - 1)) + 0);
+    fil = Math.round((Math.random() * (largo - 1)) + 0);
+    col = Math.round((Math.random() * (ancho - 1)) + 0);
 
     for (let i = 0; i < bombas; i++) {
         while (tablero[fil][col] == "*") {
-            fil = Math.floor((Math.random() * (largo - 1)) + 0);
-            col = Math.floor((Math.random() * (ancho - 1)) + 0);
+            fil = Math.round((Math.random() * (largo - 1)) + 0);
+            col = Math.round((Math.random() * (ancho - 1)) + 0);
         }
         tablero[fil][col] = "*";
     }
@@ -240,10 +222,50 @@ function abrirTablero(tablero) {
     }
 }
 
+function valCookie(nombre) {
+    let regreso = undefined;
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf(nombre);
+    if (indice == -1) {
+        regreso = null;
+    } else {
+        regreso = arrCookies2[indice + 1]
+    }
+    return regreso;
+}
+
+function guardarCookies(tablero) {
+    document.cookie = "tableroBuscaminas=" + tablero;
+    document.cookie = "largoBuscaminas=" + largo;
+    document.cookie = "anchoBuscaminas=" + ancho;
+    document.cookie = "bombasBuscaminas=" + bombas;
+    document.cookie = "arrClicBuscaminas=" + arrClic;
+    document.cookie = "arrBanderasBuscaminas=" + arrBanderas;
+}
+
+function borrarCookies() {
+    let time = new Date();
+    time.setTime(time.getTime() - 1)
+    document.cookie = "tableroBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "largoBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "anchoBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "bombasBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "arrClicBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "arrBanderasBuscaminas=0;expires=" + time.toGMTString();
+}
+
 function cargarTablero() {
     crearTablero(ancho, largo);
     generarBombas(minas);
     bombasAlrededor(minas);
+    borrarCookies();
+    guardarCookies(minas)
     mostrarBanderas();
 }
 
@@ -260,5 +282,109 @@ function valEndGame(tablero) {
     }
     if (bombasEnc == bombas) {
         alert("Has ganado");
+        borrarCookies();
     }
 }
+
+function mostrarClics(tablero) {
+    for (let i = 0; i < tablero.length; i++) {
+        for (let k = 0; k < tablero[i].length; k++) {
+            if (arrClic[i][k] == 1) {
+                let myid = i + "coma" + k;
+                let divObj = $("#" + myid);
+                if (minas[i][k] == 0) {
+                    $(divObj).css("background-color", "rgb(210, 210, 210)");
+                    $(divObj).css("background-image", "none");
+                    abrirAlrededor(i, k, minas);
+                } else {
+                    if (minas[i][k] != "*") {
+                        $(divObj).html("<p>" + minas[i][k] + "</p>");
+                        $(divObj).css("background-color", "rgb(210, 210, 210)");
+                        $(divObj).css("background-image", "none");
+                    }
+                }
+            }
+        }
+    }
+}
+
+function cookiesBanderas(tablero) {
+    for (let i = 0; i < tablero.length; i++) {
+        for (let k = 0; k < tablero[i].length; k++) {
+            let myid = i + "coma" + k;
+            let divObj = $("#" + myid);
+            if (arrBanderas[i][k] == 1) {
+                $(divObj).css("background-image", "url(../statics/img/bandera.jpg)");
+                $(divObj).data("bandera", true);
+            }
+        }
+    }
+}
+
+let minas = undefined;
+let bombas = undefined;
+let ancho = undefined;
+let largo = undefined;
+let arrClic = undefined;
+let arrBanderas = undefined;
+$(document).ready(() => {
+    if (valCookie("tableroBuscaminas") != null) {
+        bombas = valCookie("bombasBuscaminas");
+        largo = valCookie("largoBuscaminas");
+        ancho = valCookie("anchoBuscaminas");
+        minas = cookieTablero(valCookie("tableroBuscaminas"));
+        arrClic = cookieTablero(valCookie("arrClicBuscaminas"));
+        arrBanderas = cookieTablero(valCookie("arrBanderasBuscaminas"));
+        if (validarTamaño() == true) {
+            $("#tablerominas").css("width", (ancho * 30) + (ancho * 2) + "px");
+            crearTablero(ancho, largo);
+            mostrarClics(minas);
+            cookiesBanderas(minas);
+            mostrarBanderas();
+        } else {
+            $("#tablerominas").html("<h1>El ancho de su pantalla no soporta el número de casillas de ancho ingresado</h1>");
+        }
+    }
+    $("#jugar").on("click", (e) => {
+        e.preventDefault();
+        $("#tablerominas").html("");
+        if ($("#dificultad").val() == "f") {
+            bombas = 10;
+            ancho = 8;
+            largo = 8;
+        } else if ($("#dificultad").val() == "m") {
+            bombas = 40;
+            ancho = 16;
+            largo = 16;
+        } else if ($("#dificultad").val() == "d") {
+            bombas = 99;
+            ancho = 30;
+            largo = 16;
+        } else if ($("#dificultad").val() == "p") {
+            bombas = $("#bombas").val();
+            ancho = $("#ancho").val();
+            largo = $("#largo").val();
+        }
+        if (bombas >= ancho * largo) {
+            $("#tablerominas").html("<h1>Por favor, reduzca el número de bombas.</h1>");
+        } else {
+            if (validarTamaño() == true) {
+                $("#tablerominas").css("width", (ancho * 30) + (ancho * 2) + "px");
+                minas = inicializaMatriz(ancho, largo);
+                arrClic = inicializaMatriz(ancho, largo);
+                arrBanderas = inicializaMatriz(ancho, largo);
+                cargarTablero();
+            } else {
+                $("#tablerominas").html("<h1>El ancho de su pantalla no soporta el número de casillas de ancho ingresado</h1>");
+            }
+        }
+
+    });
+    $("#dificultad").on("change", () => {
+        if ($("#dificultad").val() == "p") {
+            $("#contPersonalizado").css("display", "block");
+        } else {
+            $("#contPersonalizado").css("display", "none");
+        }
+    })
+});
