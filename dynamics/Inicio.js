@@ -14,3 +14,7 @@ $("#Enviar_Puntajes").click(()=>{
   console.log("Enviar al los maximos puntajes");
   console.log("Cambio ruta 2");
 })
+$("#Enviar_Puntajes").click(()=>{
+  console.log("Enviar al los maximos puntajes");
+  console.log("Cambio ruta 2");
+})

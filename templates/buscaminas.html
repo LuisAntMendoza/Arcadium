@@ -3,39 +3,53 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../statics/css/buscaminas.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <script src="../dynamics/js/buscaminas.js"></script>
+    <script src="../dynamics/Cookies.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../libs/fontawesome_free-5-13-0/css/all.css">
+    <link rel="stylesheet" href="../statics/css/Paletas.css">
+    <link rel="stylesheet" href="../statics/css/Creditos_modales.css">
+    <link rel="stylesheet" href="../statics/css/Top_nav_bar.css">
 </head>
 
 <body>
-    <div class="contControles">
-        <form>
-            <label>Dificultad:</label>
-            <select id="dificultad">
-                <option value="f">Fácil</option>
-                <option value="m">Intermedio</option>
-                <option value="d">Difícil</option>
-                <option value="p">Personalizado</option>
-            </select>
-            <div id="contPersonalizado">
-                <label>Ancho:</label>
-                <input type="number" max="" min="2" id="ancho" required>
-                <label>Largo:</label>
-                <input type="number" max="" min="2" id="largo" required>
-                <label>Bombas:</label>
-                <input type="number" min="1" id="bombas" required>
-            </div>
-            <input type="submit" value="Jugar" id="jugar">
-        </form>
+  <nav class="Top_bar">
+      <span class="Boton" id="Inicio"><i class="fas fa-home"></i>Inicio</span>
+      <span class="Boton" id="Juegos"><i class="fas fa-gamepad"></i>Juegos</span>
+      <span class="Boton" id="Puntajes"><i class="fas fa-star"></i>Puntajes</span>
+      <span class="Boton" id="Creditos"><i class="fas fa-laptop-code"></i>Créditos</span>
+  </nav>
+    <div id="Juego-Buscaminas">
+      <div class="contControles">
+          <form>
+              <label>Dificultad:</label>
+              <select id="dificultad">
+                  <option value="f">Fácil</option>
+                  <option value="m">Intermedio</option>
+                  <option value="d">Difícil</option>
+                  <option value="p">Personalizado</option>
+              </select>
+              <div id="contPersonalizado">
+                  <label>Ancho:</label>
+                  <input type="number" max="" min="2" id="ancho" required>
+                  <label>Largo:</label>
+                  <input type="number" max="" min="2" id="largo" required>
+                  <label>Bombas:</label>
+                  <input type="number" min="1" id="bombas" required>
+              </div>
+              <input type="submit" value="Jugar" id="jugar">
+          </form>
+      </div>
+      <div class="contTablero">
+          <div id="tablerominas" class="tablero"></div>
+      </div>
+      <div class="contInfo">
+          <h3 id="bombasRest"></h3>
+      </div>
     </div>
-    <div class="contTablero">
-        <div id="tablerominas" class="tablero"></div>
-    </div>
-    <div class="contInfo">
-        <h3 id="bombasRest"></h3>
-    </div>
-
+  <script src="../dynamics/Barra_navegacion.js" charset="utf-8"></script>
 </body>
 
 </html>

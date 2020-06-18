@@ -1,3 +1,14 @@
+function AjustarTamaño() {
+  if ($( window ).width()>1450) {
+    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>Cerrar sesion")
+  }
+  if ($( window ).width()<1450) {
+    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>Cerrar")
+  }
+  if ($( window ).width()<950) {
+    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>")
+  }
+}
 /*Agrega los Creditos*/
 let Creditos = $("<div id='Creditos-mostar'>")
 Creditos.addClass("Creditos-fond")
@@ -11,10 +22,10 @@ Contenido.append( "<h4>Rodrigo</h4>","<h4>Mendoza Ramirez Luis Antonio</h4>");
 Contenido.append( "<h4>Vapnik</h4>","<h4>Villafranca Hernández Carlos Iván</h4>");
 Creditos.append(Contenido);
 $(".Top_bar").append(Creditos)
-//Csao de primera vex
 /*Obtiene el valor de los colores de la paleta  a aplicar*/
 NombreUs = getCookie("NombreUs")
 Paleta = getCookie("Paleta")
+//Caso de primera vez o sin iniciar sesion
 if (getCookie("NombreUs")=="" ||  getCookie("Paleta")=="") {
   $("head").append( "<link rel='stylesheet' href='../statics/css/Captura-datos.css'>")
   let Captura = $("<div id='Captura-mostar'>")
@@ -60,6 +71,7 @@ if (getCookie("NombreUs")=="" ||  getCookie("Paleta")=="") {
     location.reload();
   })
 }
+//Aplica la paleta de color seleccionada
 if (Paleta=="Azul") {
   $(".Top_bar").addClass("Paleta_2")
   Creditos.addClass("Paleta_2")
@@ -96,3 +108,13 @@ $("#Creditos-mostar").click(()=>{
       console.log("No hay nada por cerrar");
     }
 })
+AjustarTamaño()
+$( window ).resize(()=> {
+  AjustarTamaño()
+});
+
+$("#Cerrar-ses").click(()=>{
+  document.cookie ="Paleta=Hola :); expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  document.cookie ="NombreUs=Me alegra que leas esto; expires=Thu, 01 Jan 1970 00:00:00 UTC"
+  location.reload();
+});
