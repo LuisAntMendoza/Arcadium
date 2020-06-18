@@ -9,6 +9,15 @@ function AjustarTamaño() {
     $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>")
   }
 }
+/*Favicon*/
+$("head").append("<link rel='apple-touch-icon' sizes='180x180' href='../statics/Favicon/apple-touch-icon.png'>")
+$("head").append("<link rel='icon' type='image/png' sizes='32x32' href='../statics/Favicon/favicon-32x32.png'>")
+$("head").append("<link rel='icon' type='image/png' sizes='16x16' href='../statics/Favicon/favicon-16x16.png'>")
+$("head").append("<link rel='manifest' href='../statics/Favicon/site.webmanifest'>")
+$("head").append("<link rel='mask-icon' href='../statics/Favicon/safari-pinned-tab.svg' color='#5bbad5'>")
+$("head").append("<meta name='msapplication-TileColor' content='#da532c'>")
+$("head").append("<meta name='theme-color' content='#ffffff'>")
+
 /*Agrega los Creditos*/
 let Creditos = $("<div id='Creditos-mostar'>")
 Creditos.addClass("Creditos-fond")
@@ -22,6 +31,7 @@ Contenido.append( "<h4>Rodrigo</h4>","<h4>Mendoza Ramirez Luis Antonio</h4>");
 Contenido.append( "<h4>Vapnik</h4>","<h4>Villafranca Hernández Carlos Iván</h4>");
 Creditos.append(Contenido);
 $(".Top_bar").append(Creditos)
+
 /*Obtiene el valor de los colores de la paleta  a aplicar*/
 NombreUs = getCookie("NombreUs")
 Paleta = getCookie("Paleta")

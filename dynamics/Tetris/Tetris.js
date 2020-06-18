@@ -134,7 +134,7 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
   Tetris(Velocidad);
   DibujarTet(FilAct, CeldAct, RotarFig)
   DibujarNext()
-  // Musica_Fondo_1.play()
+  Musica_Fondo_1.play()
 })
 document.getElementById("Controles").addEventListener("click",()=>{
     let Controles = document.createElement("img")
