@@ -3,19 +3,50 @@
   src: url(../Fonts/PressStart2P-Regular.ttf);
 }
 body{
+  background-image: url(../img/Invasores.png);
+  background-size: contain;
   color: red;
-  background-color: blue;
   display: flex;
   justify-content: center;
 }
 canvas{
-  background-color: black;
+  border: 5px solid white;
+  background-color: #000000;
 }
 .Puntaje{
-  background-color: green;
+  background-color: #38B814;
   width: 200px;
   height: 200px;
   font-family:"gamer";
-  color: yellow;
+  color: #000000;
 
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(93, 42, 131, 0.42);
+  width: 80%;
+  height: 90%;
+  position: absolute;
+  color: rgb(0, 255, 33);
+}
+#modal .Nombre{
+  color: yellow;
+  font-size: 30px;
+  font-family: "gamer";
+}
+.jugando{
+  display: none;
+}
+.perder{
+  top: 20%;
+  justify-content: center;
+  text-align: center;
+  background-image: linear-gradient(30deg, rgb(0, 0, 0),rgb(31, 182, 0));
+  width: 60%;
+  height: 40%;
+  position: absolute;
+  color: white;
 }
