@@ -76,7 +76,7 @@ function mostrarBanderas() {
             numBanderas++;
         }
     })
-    $("#bombasRest").text("Restantes: " + (bombas - numBanderas));
+    $("#bombasRest").html("<h3><i class='fas fa-flag'></i> " + (bombas - numBanderas) + "</h3>");
 }
 
 function mostrarNumero(e) {
@@ -348,6 +348,7 @@ $(document).ready(() => {
     $("#jugar").on("click", (e) => {
         e.preventDefault();
         $("#tablerominas").html("");
+        $("#tablerominas").css("border", "1px solid black");
         if ($("#dificultad").val() == "f") {
             bombas = 10;
             ancho = 8;
@@ -366,7 +367,9 @@ $(document).ready(() => {
             largo = $("#largo").val();
         }
         if (bombas >= ancho * largo) {
-            $("#tablerominas").html("<h1>Por favor, reduzca el número de bombas.</h1>");
+            $("#error-pers").text("Por favor, reduzca el numero de bombas.");
+            $("#tablerominas").css("border", "none");
+            $("#bombasRest").html("");
         } else {
             if (validarTamaño() == true) {
                 $("#tablerominas").css("width", (ancho * 30) + (ancho * 2) + "px");
@@ -375,7 +378,9 @@ $(document).ready(() => {
                 arrBanderas = inicializaMatriz(ancho, largo);
                 cargarTablero();
             } else {
-                $("#tablerominas").html("<h1>El ancho de su pantalla no soporta el número de casillas de ancho ingresado</h1>");
+                $("#error-pers").text("El ancho de su pantalla no soporta el numero de casillas de ancho ingresado.");
+                $("#tablerominas").css("border", "none");
+                $("#bombasRest").html("");
             }
         }
 
@@ -383,8 +388,41 @@ $(document).ready(() => {
     $("#dificultad").on("change", () => {
         if ($("#dificultad").val() == "p") {
             $("#contPersonalizado").css("display", "block");
-        } else {
+            $("#dificultad").css("border", "4px solid blue");
+        } else if ($("#dificultad").val() == "f") {
             $("#contPersonalizado").css("display", "none");
+            $("#dificultad").css("border", "4px solid greenyellow");
+        } else if ($("#dificultad").val() == "m") {
+            $("#contPersonalizado").css("display", "none");
+            $("#dificultad").css("border", "4px solid yellow");
+        } else if ($("#dificultad").val() == "d") {
+            $("#contPersonalizado").css("display", "none");
+            $("#dificultad").css("border", "4px solid red");
         }
     })
+    //Modal
+    $("#cerrar-modal").on("click", () => {
+        $(".modal").css("animation", "desvanecerModal 0.5s linear");
+        $(".fade-body").css("animation", "desvanecerFade 0.5s linear");
+        setTimeout(() => {
+            $(".modal").css("display", "none");
+            $(".fade-body").css("display", "none");
+        }, 450);
+    });
+    $("#ayuda").on("click", () => {
+        $(".modal").css("animation", "aparecerModal 0.5s linear");
+        $(".fade-body").css("animation", "aparecerFade 0.5s linear");
+        setTimeout(() => {
+            $(".modal").css("display", "block");
+            $(".fade-body").css("display", "block");
+        }, 450);
+    })
+
+
+
+
+
+
+
+
 });
