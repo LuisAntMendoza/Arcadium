@@ -1,14 +1,3 @@
-function AjustarTamaño() {
-  if ($( window ).width()>1450) {
-    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>Cerrar sesion")
-  }
-  if ($( window ).width()<1450) {
-    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>Cerrar")
-  }
-  if ($( window ).width()<950) {
-    $("#Cerrar-ses").html("<i class='fas fa-times-circle'></i>")
-  }
-}
 /*Favicon*/
 $("head").append("<link rel='apple-touch-icon' sizes='180x180' href='../statics/Favicon/apple-touch-icon.png'>")
 $("head").append("<link rel='icon' type='image/png' sizes='32x32' href='../statics/Favicon/favicon-32x32.png'>")
@@ -118,11 +107,7 @@ $("#Creditos-mostar").click(()=>{
       console.log("No hay nada por cerrar");
     }
 })
-AjustarTamaño()
-$( window ).resize(()=> {
-  AjustarTamaño()
-});
-
+//Evento para cerrar la sesion
 $("#Cerrar-ses").click(()=>{
   document.cookie ="Paleta=Hola :); expires=Thu, 01 Jan 1970 00:00:00 UTC";
   document.cookie ="NombreUs=Me alegra que leas esto; expires=Thu, 01 Jan 1970 00:00:00 UTC"

@@ -28,16 +28,9 @@ body {
     background-color: #292929;
     /*Color por deafult*/
 }
-
 .Boton:hover i {
     animation-name: Girar;
     animation-duration: 1s;
-}
-#Cerrar-ses{
-  background-color: #d91212;
-}
-#Cerrar-ses:Hover{
-  background-color: #bb0707;
 }
 @font-face {
     font-family: "RobotoMono-Medium";
@@ -55,12 +48,6 @@ body {
     }
     .Boton {
         text-align: center;
-        width: 20%;
-    }
-    #Cerrar-ses.Boton i{
-      display: inherit;
-    }
-    #Cerrar-ses.Boton{
-      width: 80px;
+        width: 25%;
     }
 }

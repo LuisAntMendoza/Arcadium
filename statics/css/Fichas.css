@@ -27,7 +27,8 @@ img{
   margin: 10px;
   width: 30%;
   background-color: #adadad;
-  opacity: 0.85;
+  opacity: 0.75;
+  transition: opacity .5s linear;
 }
 .Ficha_juego:hover{
   opacity: 1;
