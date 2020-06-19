@@ -1,24 +1,21 @@
 table {
-    width: 60%;
     text-align: center;
+    width: 60%;
 }
 
 table, th, tr, td {
     border: 1px solid black;
     border-collapse: collapse;
-    color: white;
-    font-family: "Mukta-Regular";
-    text-align: center;
 }
 
 .Encabezado {
     background-color: #555555;
-    font-family: "PressStart2P-Regular";
-    width: 100%;
     color: white;
-    text-align: center;
+    font-family: "PressStart2P-Regular";
     padding: 5px;
+    text-align: center;
     text-shadow: 4px 4px 8px #000000;
+    width: 100%;
 }
 
 .puntajes-juegos {
@@ -26,28 +23,25 @@ table, th, tr, td {
     justify-content: center;
     flex-wrap: wrap;
     width: 80%;
-    margin: 30px 0;
-    padding-bottom: 20px;
 }
 
 .subEnc {
     background-color: #555555;
+    color: white;
     font-family: "PressStart2P-Regular";
     font-size: 12px;
-    width: 100%;
-    color: white;
-    margin-bottom: 20px ;
-    text-align: center;
+    margin: 20px auto;
     padding: 5px 0;
-    position: relative;
+    text-align: center;
     text-shadow: 4px 4px 8px #000000;
+    width: 100%;
 }
 
 #Mejores-Puntajes {
-    margin: 30px auto;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px auto;
     width: 100%;
 }
 
@@ -61,9 +55,4 @@ table, th, tr, td {
 
 #Space {
     background-color: rgba(93, 42, 131, 0.42);
-}
-
-@font-face {
-  font-family: "Mukta-Regular";
-  src: url("../Fonts/Mukta-Regular.ttf");
 }
