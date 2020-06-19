@@ -1,3 +1,4 @@
+//regresa un arreglo con las dimensiones especificadas
 function cookieTablero(board) {
     let board2 = board.split(",");
     let tabla = [];
@@ -12,6 +13,7 @@ function cookieTablero(board) {
     return tabla;
 }
 
+//valida que la pantalla no sea mas chica que el tablero
 function validarTamaño() {
     let regreso = true;
     let contenedor = $(".contTablero").css("width");
@@ -23,6 +25,7 @@ function validarTamaño() {
     return regreso;
 }
 
+//crea un tablero nuevo
 function inicializaMatriz(x, y) {
     let tabla = [];
     for (let i = 0; i < y; i++) {
@@ -34,6 +37,7 @@ function inicializaMatriz(x, y) {
     return tabla;
 }
 
+//le añade celdas al html
 function crearTablero(x, y) {
     for (let i = 0; i < y; i++) {
         for (let j = 0; j < x; j++) {
@@ -47,6 +51,7 @@ function crearTablero(x, y) {
     }
 }
 
+//muestra u oculta una bandera al dar clic derecho
 function mostrarBandera(e) {
     e.preventDefault();
     let auxstr = this.id.split("coma");
@@ -66,6 +71,7 @@ function mostrarBandera(e) {
     valEndGame(minas);
 }
 
+//muestra el numero de banderas colocadas
 function mostrarBanderas() {
     let numBanderas = 0;
     $($("#tablerominas").children()).each((ind, elem) => {
@@ -76,6 +82,7 @@ function mostrarBanderas() {
     $("#bombasRest").html("<h3><i class='fas fa-flag'></i> " + (bombas - numBanderas) + "</h3>");
 }
 
+//muestra el/los numeros en caso de dar clic
 function mostrarNumero(e) {
     let auxstr = this.id.split("coma");
     let myid = auxstr[0] + "coma" + auxstr[1];
@@ -102,6 +109,7 @@ function mostrarNumero(e) {
     }
 }
 
+//delimita los indices para agregar los numeros alrededor de las bombas
 function bombasAlrededor(tablero) {
     for (let i = 0; i < tablero.length; i++) {
         for (let j = 0; j < tablero[i].length; j++) {
@@ -130,6 +138,7 @@ function bombasAlrededor(tablero) {
     }
 }
 
+//coloca los numeros segun los indices agregados
 function colocaNumeroBombas(leti, letj, fini, finj, tablero) {
     for (let i = leti; i <= fini; i++) {
         for (let j = letj; j <= finj; j++) {
@@ -140,6 +149,7 @@ function colocaNumeroBombas(leti, letj, fini, finj, tablero) {
     }
 }
 
+//genera aleatoriamente las bombas
 function generarBombas(tablero) {
     let fil = 0;
     let col = 0;
@@ -156,6 +166,7 @@ function generarBombas(tablero) {
     }
 }
 
+//muestra el tipo de celda segun sea el caso
 function abrirCeros(leti, letj, fini, finj, cori, corj, tablero) {
     for (let i = leti; i <= fini; i++) {
         for (let j = letj; j <= finj; j++) {
@@ -184,6 +195,7 @@ function abrirCeros(leti, letj, fini, finj, cori, corj, tablero) {
     }
 }
 
+//delimita los indices para mostrar las celdas
 function abrirAlrededor(xi, xj, tablero) {
     if (xi == 0 && xj == 0) {
         abrirCeros(xi, xj, xi + 1, xj + 1, xi, xj, tablero);
@@ -206,6 +218,7 @@ function abrirAlrededor(xi, xj, tablero) {
     }
 }
 
+//muestra las bombas del tablero
 function abrirTablero(tablero) {
     for (let i = 0; i < tablero.length; i++) {
         for (let j = 0; j < tablero[i].length; j++) {
@@ -218,6 +231,7 @@ function abrirTablero(tablero) {
     }
 }
 
+//obtiene el valor de una cookie
 function valCookie(nombre) {
     let regreso = undefined;
     let cookies = document.cookie;
@@ -236,6 +250,7 @@ function valCookie(nombre) {
     return regreso;
 }
 
+//crea las cookies para guardar el juego
 function guardarCookies(tablero) {
     document.cookie = "tableroBuscaminas=" + tablero;
     document.cookie = "largoBuscaminas=" + largo;
@@ -246,6 +261,7 @@ function guardarCookies(tablero) {
     document.cookie = "dificultadBuscaminas=" + dificultad;
 }
 
+//borra las cookies generadas
 function borrarCookies() {
     let time = new Date();
     time.setTime(time.getTime() - 1)
@@ -258,6 +274,7 @@ function borrarCookies() {
     document.cookie = "dificultadBuscaminas=0;expires=" + time.toGMTString();
 }
 
+//inicializa un juego nuevo
 function cargarTablero() {
     crearTablero(ancho, largo);
     generarBombas(minas);
@@ -267,6 +284,7 @@ function cargarTablero() {
     mostrarBanderas();
 }
 
+//verifica que todas las bombas hayan sido detectadas
 function valEndGame(tablero) {
     let bombasEnc = 0;
     for (let i = 0; i < tablero.length; i++) {
@@ -285,6 +303,7 @@ function valEndGame(tablero) {
     }
 }
 
+//muestra los clics que dimos en caso de recargar la pagina
 function mostrarClics(tablero) {
     for (let i = 0; i < tablero.length; i++) {
         for (let k = 0; k < tablero[i].length; k++) {
@@ -307,6 +326,7 @@ function mostrarClics(tablero) {
     }
 }
 
+//muestra las banderas en caso de recargar la pagina
 function cookiesBanderas(tablero) {
     for (let i = 0; i < tablero.length; i++) {
         for (let k = 0; k < tablero[i].length; k++) {
@@ -320,6 +340,7 @@ function cookiesBanderas(tablero) {
     }
 }
 
+//hace los cambios para mostrar el mensaje de gane
 function ganar() {
     $("#tablerominas").html("");
     $("#tablerominas").css("border", "none");
@@ -330,12 +351,14 @@ function ganar() {
 
 }
 
+//muestra el mensaje de perdida
 function perder() {
     puntaje();
     $("#mensaje-tablero").html("<h4>Has detonado una bomba! Vuelve a intentarlo</h4><h4>Su puntaje ha sido: " + score + "</h4>")
 
 }
 
+//Calcula el puntaje en base a la dificultad
 function puntaje() {
     if (score == undefined) {
         score = 0;
@@ -352,6 +375,7 @@ function puntaje() {
     cookieScore(score);
 }
 
+//guardamos el puntaje en una cookie
 function cookieScore(puntuacion) {
     let fecha = new Date().getTime();
     let usuario = valCookie("NombreUs");
@@ -373,6 +397,7 @@ function cookieScore(puntuacion) {
     }
 }
 
+//definimos variables
 let minas = undefined;
 let bombas = undefined;
 let ancho = undefined;
@@ -382,6 +407,7 @@ let arrBanderas = undefined;
 let score = undefined;
 let dificultad = undefined;
 $(document).ready(() => {
+    //si existen cookies las cargamos
     if (valCookie("tableroBuscaminas") != null) {
         bombas = valCookie("bombasBuscaminas");
         largo = valCookie("largoBuscaminas");
@@ -400,6 +426,7 @@ $(document).ready(() => {
             $("#error-pers").text("El ancho de su pantalla no soporta el numero de casillas de ancho ingresado.");
         }
     }
+    //le da el evento clic a la celda
     $("#jugar").on("click", (e) => {
         e.preventDefault();
         $("#tablerominas").html("");
@@ -447,6 +474,7 @@ $(document).ready(() => {
         }
 
     });
+    //le cambia el color de borde al select
     $("#dificultad").on("change", () => {
         if ($("#dificultad").val() == "p") {
             $("#contPersonalizado").css("display", "block");
@@ -462,6 +490,7 @@ $(document).ready(() => {
             $("#dificultad").css("border", "4px solid red");
         }
     })
+    //finaliza el juego y borra las cookies
     $("#cerrar-juego").on("click", () => {
         borrarCookies();
         window.location = "../index.html";
@@ -475,6 +504,7 @@ $(document).ready(() => {
             $(".fade-body").css("display", "none");
         }, 450);
     });
+    //Modal
     $("#ayuda").on("click", () => {
         $(".modal").css("animation", "aparecerModal 0.5s linear");
         $(".fade-body").css("animation", "aparecerFade 0.5s linear");
