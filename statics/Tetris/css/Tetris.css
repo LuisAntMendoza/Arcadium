@@ -1,22 +1,44 @@
-@font-face {
-  font-family: "PressStart2P-Regular";
-  src: url("../../Fonts/PressStart2P-Regular.ttf");
-}
 button{
+  border: 5px solid #430078;
+  color: white;
   font-family: "PressStart2P-Regular";
   margin-top: 10px;
   padding: 3px;
-  color: white;
-  border: 5px solid #430078;
 }
+button:focus {
+   outline: none;
+ }
 .Informacion{
-  position: relative;
   background-color: #1d1d1d;
   border: 5px solid #430078;
   color: white;
   font-family: "PressStart2P-Regular";
   font-size: 18px;
   padding: 5px;
+  position: relative;
+}
+.celda{
+  height: 25px;
+  width:10%;
+}
+.Columna{
+  display: flex;
+  height: 25px;
+  width: 250px;
+}
+.No{
+  background-color: #e20000;
+}
+.Si{
+  background-color: #0ab100;
+}
+.TAmarilla{
+  background-color: #d8f000;
+  background-image: url("../Piezas/Tetris_pieza_amarillo.png");
+}
+.TAzul{
+  background-color: #23119c;
+  background-image: url("../Piezas/Tetris_pieza_azul.png");
 }
 .TAzulC{
  background-color: #00fff9;
@@ -26,87 +48,61 @@ button{
  background-color: #70119c;
  background-image: url("../Piezas/Tetris_pieza_morado.png");
 }
-.TAmarilla{
- background-color: #d8f000;
-  background-image: url("../Piezas/Tetris_pieza_amarillo.png");
-}
 .TNaranja{
  background-color: #dd7c00;
  background-image: url("../Piezas/Tetris_pieza_naranja.png");
-}
-.TAzul{
- background-color: #23119c;
-  background-image: url("../Piezas/Tetris_pieza_azul.png");
-}
-.TVerde{
- background-color: #0ab100;
- background-image: url("../Piezas/Tetris_pieza_verde.png");
 }
 .Troja{
  background-color: #9c1111;
  background-image: url("../Piezas/Tetris_pieza_roja.png");
 }
-.Columna{
-  width: 250px;
-  height: 25px;
-  display: flex;
-}
-.celda{
-  height: 25px;
-  width:10%;
-}
-.Si{
+.TVerde{
   background-color: #0ab100;
-}.No{
-  background-color: #e20000;
-}
-#Tetris_Juego{
-  padding: 2%;
-  position: relative;
-  background-color: #831279;
-  width: 80%;
-  left: 8%;
-  height: 550px;
-  margin-top: 30px;
+  background-image: url("../Piezas/Tetris_pieza_verde.png");
 }
 #Tablero{
-  position: relative;
-  width: 250px;
-  height: auto;
   background-color: #1d1d1d;
   border: 5px solid #430078;
+  height: auto;
+  left: 20%;
+  position: relative;
   top: 2%;
-  left: 20%
+  width: 250px;
 }
 #Info{
-  text-align: center;
-  padding: 15px;
-  width: 250px;
-  left: 68%;
   bottom: 500px;
+  left: 68%;
+  padding: 15px;
+  text-align: center;
+  width: 250px;
 }
-#Puntaje{
-  width: 150px;
-  height: 50px;
-  left: 18%;
+#Tetris_Juego{
+  background-color: #831279;
+  height: 550px;
+  left: 8%;
+  margin-top: 30px;
+  padding: 2%;
+  position: relative;
+  width: 80%;
 }
 #Proxima_Figura{
-  width: 125px;
   height: 125px;
   left: 22%;
+  width: 125px;
 }
-#Total_Filas{
-  width: 150px;
+#Puntaje, #Total_Filas{
   height: 50px;
   left: 18%;
+  width: 150px;
 }
-button:focus {
-   outline: none;
- }
 #Info > h2{
   color: #fc00ce;
   font-family: "PressStart2P-Regular";
   font-size: 15px;
+}
+@font-face {
+  font-family: "PressStart2P-Regular";
+  src: url("../../Fonts/PressStart2P-Regular.ttf");
 }
 @media screen AND (max-width:1080px) {
   #Info{

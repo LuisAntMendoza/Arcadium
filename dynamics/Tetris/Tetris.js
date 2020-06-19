@@ -5,9 +5,12 @@
 //Primer Tetranomio que aparece
 CrearTerreno()
 CrearProxFig()
-var Velocidad = 1000;
+var Velocidad = 1100;
 var Puntuacion = 0;
+var FilasDestruidas = 0;
+var Vivo=true;
 
+//Audios del juego
 let Musica_Fondo_1 = new Audio();
 let Make_Triple = new Audio();
 let Make_Tetris = new Audio();
@@ -27,10 +30,10 @@ Make_Tetris.src = "../statics/Tetris/Sonidos/Hacer_tetris.mp3";
 Destroy_Row.src = "../statics/Tetris/Sonidos/Destruir_fila.mp3";
 Musica_Fondo_1.loop = true;
 
-var FilasDestruidas = 0;
-var Vivo=true;
+//Variable que permite reproducir la musica de fondo
 var MusicaON = true;
-//Estado Dela Musica{
+
+//Eventos para activar y desactivar la musica
 document.getElementById("Musica").addEventListener("click",()=>{
   if (document.getElementById("Musica").classList.contains("Si")) {
     Musica_Fondo_1.pause()
@@ -50,14 +53,15 @@ document.getElementById("Musica").addEventListener("click",()=>{
 //El juego en si
 function Tetris(caida) {
   setTimeout(()=>{
-    if(FilAct-ColAbajo(RotarFig)<(FILAS-Tetranomios[TetActual][RotarFig].length)){
+    //Si la parte de abajo esta vacia permite bajar la ficha cada Velocidad milisegundos
+    if(FilAct-ColAbajo(RotarFig)<(FILAS-Tetranomios[TetActual][RotarFig].length)){//Caso de figuras abajo
       DesDibujarTet(FilAct, CeldAct, RotarFig);
       if(!(ColAbajoTet(FilAct, CeldAct, RotarFig))){
         DibujarTet(FilAct, CeldAct, RotarFig)
         Fijar.play()
         FilasHechas()
         GenerarTet()
-      }else if (FilAct-ColAbajo(RotarFig)+Tetranomios[TetActual][RotarFig].length==19) {
+      }else if (FilAct-ColAbajo(RotarFig)+Tetranomios[TetActual][RotarFig].length==19) {//Caso de estar hasta abajo
         FilAct++;
         DibujarTet(FilAct, CeldAct, RotarFig)
         Fijar.play()
@@ -68,21 +72,20 @@ function Tetris(caida) {
         DibujarTet(FilAct, CeldAct, RotarFig)
       }
       SeguirVivo()
-      if (SeguirVivo()) {
+      if (SeguirVivo()) {//Determina si aun autollamarse
         Tetris(Velocidad)
       }
     }
   },Velocidad)
 }
+//Cuando se hace click en iniciar juego comienza
 document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
   document.addEventListener("keydown",()=>{
+    //Mientras que estes vivo puedes moverte
     if (Vivo) {
       let dir = event.keyCode;
-      if (MusicaON) {
-
-      }
       //Movimiento Hacia Arriba
-      if( dir == 37 &&  CeldAct>0-ColParedIzq(RotarFig)){
+      if( dir == 37 &&  CeldAct>0-ColParedIzq(RotarFig)){//Moverse izquierda
         DesDibujarTet(FilAct, CeldAct, RotarFig);
         Mover.play()
         if(ColIzqTet(FilAct, CeldAct, RotarFig)){
@@ -91,7 +94,7 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
         DibujarTet(FilAct, CeldAct, RotarFig);
         Fijar.play()
         FilasHechas()
-      }else if(dir == 39 && (CeldAct+Tetranomios[TetActual][RotarFig][0].length)-ColParedDer(RotarFig)<COLUMNAS){
+      }else if(dir == 39 && (CeldAct+Tetranomios[TetActual][RotarFig][0].length)-ColParedDer(RotarFig)<COLUMNAS){//Moverse derecha
         DesDibujarTet(FilAct, CeldAct, RotarFig);
         Mover.play()
         if(ColDerTet(FilAct, CeldAct, RotarFig)){
@@ -99,24 +102,24 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
         }
         DibujarTet(FilAct, CeldAct, RotarFig);
       }else if(dir == 40 && FilAct-ColAbajo(RotarFig)<(FILAS-Tetranomios[TetActual][RotarFig].length) && SeguirVivo()){//Este es abajo
-        Puntuacion+=1
+        Puntuacion+=1//Aumenta un punto
         DesDibujarTet(FilAct, CeldAct, RotarFig);
-        if(!(ColAbajoTet(FilAct, CeldAct, RotarFig))){
+        if(!(ColAbajoTet(FilAct, CeldAct, RotarFig))){//Hay tetrinomio abajo
           DibujarTet(FilAct, CeldAct, RotarFig)
           Fijar.play()
           FilasHechas()
           GenerarTet()
-        }else if (FilAct-ColAbajo(RotarFig)+Tetranomios[TetActual][RotarFig].length==19 && SeguirVivo()) {
+        }else if (FilAct-ColAbajo(RotarFig)+Tetranomios[TetActual][RotarFig].length==19 && SeguirVivo()) {//Esta en la ultima fila
           FilAct++;
           DibujarTet(FilAct, CeldAct, RotarFig)
           Fijar.play()
           FilasHechas()
           GenerarTet()
-        }else {
+        }else {//Simplemente desciende
           FilAct++;
         }
         DibujarTet(FilAct, CeldAct, RotarFig)
-      }else if(dir == 38 && PoderRotar()){
+      }else if(dir == 38 && PoderRotar()){//Rotar la figura
         Rotar.play()
         DesDibujarTet(FilAct, CeldAct, RotarFig);
         if (PoderRotTet(FilAct, CeldAct, RotarFig)) {
@@ -130,12 +133,14 @@ document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
       }
     }
   });
+  //Quita la pantalla de Inicio
   document.getElementById("Datos_Juego").style.display = "none";
   Tetris(Velocidad);
   DibujarTet(FilAct, CeldAct, RotarFig)
   DibujarNext()
   Musica_Fondo_1.play()
 })
+//Muestra la imagen de los controles en la pagina Inicio del tetris
 document.getElementById("Controles").addEventListener("click",()=>{
     let Controles = document.createElement("img")
     Controles.src="../statics/Tetris/img/Controles.png"

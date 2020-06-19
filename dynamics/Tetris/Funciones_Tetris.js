@@ -1,12 +1,12 @@
 const COLUMNAS = 10;
 const FILAS = 20;
-var FilAct=0;
-var CeldAct=4;
-var RotarFig=0;
-var TetActual=Math.floor(Math.random()*Tetranomios.length);
-var TetProx=Math.floor(Math.random()*Tetranomios.length);
-var Tablero =document.getElementById('Tablero')
-var Proxima_Figura= document.getElementById("Proxima_Figura")
+var FilAct=0;//Fila en la que se encuentra la parte superiori del tetranomio
+var CeldAct=4;//Columna el que se encuentra la parte izquierda del tetranomio
+var RotarFig=0;//Posicion en la (de las 4 rotacione) en la que se encuentra
+var TetActual=Math.floor(Math.random()*Tetranomios.length);//Generacion del primer tetranomio
+var TetProx=Math.floor(Math.random()*Tetranomios.length);//Generacion del siguiente tetranomio
+var Tablero =document.getElementById('Tablero')//Obtencio por DOM del tablero donde se insertara todo
+var Proxima_Figura= document.getElementById("Proxima_Figura")//Obtencio por DOM del tablero donde la sisuienten figura
 ///////////////////////////////////////////////////////////////////////////////
 //////*******  Generacion del terreno de juego y prox Tet  **********//////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -113,7 +113,8 @@ function GenerarTet() {
 ///////////////////////////////////////////////////////////////////////////////
 //////////**** Funciones colisiones de las piezas en el juego ******///////////
 ///////////////////////////////////////////////////////////////////////////////
-
+/*Aqui son funciones que analizan cuantas veces mas se pueden mover hacias la
+ derecha e izquierda sin que sobresalgan el terreno*/
 function ColParedIzq(PosFigura) {
   let ColVacia=true;
   let n = 0;
@@ -144,6 +145,7 @@ function ColParedDer(PosFigura) {
   return n-1
 }
 ///////////////////////////////////////////////////////////////////////////////
+/*Comprueba si es posible bajar aun más o no*/
 function ColAbajo(PosFigura) {
   let ColVacia=true;
   let n = 0;
@@ -160,6 +162,7 @@ function ColAbajo(PosFigura) {
   return n-1
 }
 ////////////////////////////////////////////////////////////////////////////////
+/*Checa que si al rotar no sobresaldra del terreno por haber rotado*/
 function PoderRotar() {
   var SiPuedo=true
   let alturaPieca=Tetranomios[TetActual][RotarFig].length-1
@@ -212,6 +215,8 @@ function PoderRotar() {
   return SiPuedo
 }
 ////////////////////////////////////////////////////////////////////////////////
+/*Comprueba si hay algun tetranomio en sus lados (inferiori y laterelas)
+de ser asi regresara un false para evitar de que se puedan ejecutar estos hechos*/
 function ColIzqTet(FilActual, CeldaActual, Figura) {
     let FigX=0;
     let FigY=0;
@@ -278,6 +283,7 @@ function ColAbajoTet(FilActual, CeldaActual, Figura) {
     return SiPuedo;
 }
 ////////////////////////////////////////////////////////////////////////////////
+/*Comprueba que a la hora de rotar no se sobre ponga a una de las piezas ya existentes*/
 function PoderRotTet(FilActual, CeldaActual, Figura) {
   let FigX=0;
   let FigY=0;
@@ -321,6 +327,7 @@ function FilasHechas() {
     }
   }
   if (FilasAremover.length>0) {
+    //Dependiendo de las filas eliminadas genera un sonido
     if (FilasAremover.length==4) {
       Make_Tetris.play()
     }else if (FilasAremover.length==3) {
@@ -328,16 +335,30 @@ function FilasHechas() {
     }else{
       Destroy_Row.play()
     }
+    // Disminuye la velocidas con un minimo de 100
     if (Velocidad>100) {
       Velocidad=Velocidad-20;
     }
+    // Aumenta el score dependiendo de las filas FilasDestruidas
+    /*
+      1 fILA == 100 puntos
+      2 fILA == 400 puntos
+      3 fILA == 900 puntos
+      4 fILA == 1600 puntos
+
+      ** Mienttas se acelera la velocidad de caida se suma 1 punto
+    */
     Puntuacion+=Math.pow((FilasAremover.length)*10, 2)
+    //Aumenta las filas destruidas
     FilasDestruidas+=FilasAremover.length
+    //Refelja ese contenido
     document.getElementById("FilasD").innerHTML = FilasDestruidas;
     ModifcarPuntaje(Puntuacion);
+    //Destruye las filas de abajo hacia arriba en la ubicacion indicada para evitar conflictos
     for (var i = FilasAremover.length-1; i >=0 ; i--) {
       Tablero.children[FilasAremover[i]].remove();
     }
+    //Crea filas nuevas al inicio para representar la caida de las otras
     for (var i = FilasAremover.length-1; i >=0 ; i--) {
       let Fila= document.createElement("div")
       Fila.classList.add("Columna")
@@ -354,7 +375,53 @@ function FilasHechas() {
   function ModifcarPuntaje(Puntuacion){
     document.getElementById("Puntuacion").innerHTML = Puntuacion;
   }
+///////////////////////////////////////////////////////////////////////////////////////
+/*Funciones  para hacer los scores by Luis :) */
+function valCookie(nombre) {
+    let regreso = undefined;
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf(nombre);
+    if (indice == -1) {
+        regreso = null;
+    } else {
+        regreso = arrCookies2[indice + 1]
+    }
+    return regreso;
+}
+
+function cookieScore(puntuacion) {
+    let fecha = new Date().getTime();
+    let usuario = valCookie("NombreUs");
+    let valorCookie = [puntuacion, usuario, fecha];
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf("scoresTetris");
+    if (indice == -1) {
+        document.cookie = "scoresTetris=" + valorCookie;
+    } else {
+        let board2 = arrCookies2[indice + 1];
+
+        document.cookie = "scoresTetris=" + board2 + "," + valorCookie;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////////******  Funcion para continuar el juego  *****/////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
   function SeguirVivo() {
+    //Calculas si en la primeras tres filas (donde aparecen las piezas)
+    //hay alguna que tenga mas de dos clases (que haya fichas sobreescritas)
     for (var i = 0; i < 4; i++) {
       for (var n = 0; n < COLUMNAS; n++) {
         if (Tablero.children[i].children[n].classList.length>2) {
@@ -362,33 +429,38 @@ function FilasHechas() {
         }
       }
     }
+    //De ser asi terminara el juego
     if (!Vivo) {
       Musica_Fondo_1.pause()
       let VolverPlay = document.createElement("button")
       VolverPlay.innerText="Volver a jugar"
       VolverPlay.addEventListener("click", ()=>{
+        //Se reinician a los valores predeterminados
         Velocidad = 1100;
         Puntuacion = 0;
         FilasDestruidas = 0;
         Vivo=true;
-        Tablero.innerHTML= ""
-        Proxima_Figura.innerHTML= ""
+        Tablero.innerHTML= ""//Limpia el tablero
+        Proxima_Figura.innerHTML= ""//Limpia la proxima pieza
         CrearTerreno()
         CrearProxFig()
-        ModifcarPuntaje(Puntuacion);
-        document.getElementById("FilasD").innerHTML = FilasDestruidas;
-        document.getElementById("Datos_Juego").style.display = "none";
-        Tetris(Velocidad);
+        ModifcarPuntaje(Puntuacion);//limpia la puntuacion
+        document.getElementById("FilasD").innerHTML = FilasDestruidas;//Limpia las filas destruidas
+        document.getElementById("Datos_Juego").style.display = "none";//Desaperece la pestaña de game over
+        Tetris(Velocidad);//Vuelve a comenzar el juego
         DibujarTet(FilAct, CeldAct, RotarFig)
         DibujarNext()
         if (MusicaON) {
           Musica_Fondo_1.play()
         }
       })
+      //Muestra el mensaje de que perdiste
       let Mensaje = document.createElement("h1")
       Mensaje.innerText="Has perdido :("
       let PuntuacionFinal = document.createElement("h3")
+      ModifcarPuntaje(Puntuacion);
       PuntuacionFinal.innerText="Tu puntuacion es de "+Puntuacion;
+      cookieScore(Puntuacion)
       document.getElementById("Datos_Juego-cont").innerHTML= ""
       document.getElementById("Datos_Juego-cont").appendChild(Mensaje)
       document.getElementById("Datos_Juego-cont").appendChild(PuntuacionFinal)
