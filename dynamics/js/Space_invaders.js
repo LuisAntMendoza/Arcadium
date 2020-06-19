@@ -70,7 +70,23 @@ let Ataque = {
 	pos_y:(Math.floor(Math.random()*Posiciones.length)+1)*separacionVertical,
 	color:"red"
 }
-
+function valCookie(nombre) {
+    let regreso = undefined;
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf(nombre);
+    if (indice == -1) {
+        regreso = null;
+    } else {
+        regreso = arrCookies2[indice + 1]
+    }
+    return regreso;
+}
 function cookieScore(puntuacion) {
     let fecha = new Date().getTime();
     let usuario = valCookie("NombreUs");
