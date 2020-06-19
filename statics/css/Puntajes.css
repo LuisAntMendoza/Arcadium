@@ -5,6 +5,9 @@ table {
 table, th, tr, td {
     border: 1px solid black;
     border-collapse: collapse;
+    color: white;
+    font-family: "Mukta-Regular";
+    text-align: center;
 }
 
 .Encabezado {
@@ -54,4 +57,9 @@ table, th, tr, td {
 
 #Space {
     background-color: rgba(93, 42, 131, 0.42);
+}
+
+@font-face {
+  font-family: "Mukta-Regular";
+  src: url("../Fonts/Mukta-Regular.ttf");
 }

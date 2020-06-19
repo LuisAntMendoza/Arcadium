@@ -1,5 +1,6 @@
 const COLUMNAS = 10;
 const FILAS = 20;
+var Modificarcookies=true;//Ayuda que al final no se vuelva loco tetris
 var FilAct=0;//Fila en la que se encuentra la parte superiori del tetranomio
 var CeldAct=4;//Columna el que se encuentra la parte izquierda del tetranomio
 var RotarFig=0;//Posicion en la (de las 4 rotacione) en la que se encuentra
@@ -432,6 +433,11 @@ function cookieScore(puntuacion) {
     //De ser asi terminara el juego
     if (!Vivo) {
       Musica_Fondo_1.pause()
+      if (Modificarcookies) {
+        cookieScore(Puntuacion)
+        Modificarcookies=false;
+        console.log("cookieScore");
+      }
       let VolverPlay = document.createElement("button")
       VolverPlay.innerText="Volver a jugar"
       VolverPlay.addEventListener("click", ()=>{
@@ -450,6 +456,7 @@ function cookieScore(puntuacion) {
         Tetris(Velocidad);//Vuelve a comenzar el juego
         DibujarTet(FilAct, CeldAct, RotarFig)
         DibujarNext()
+        Modificarcookies=true;
         if (MusicaON) {
           Musica_Fondo_1.play()
         }
@@ -460,7 +467,6 @@ function cookieScore(puntuacion) {
       let PuntuacionFinal = document.createElement("h3")
       ModifcarPuntaje(Puntuacion);
       PuntuacionFinal.innerText="Tu puntuacion es de "+Puntuacion;
-      cookieScore(Puntuacion)
       document.getElementById("Datos_Juego-cont").innerHTML= ""
       document.getElementById("Datos_Juego-cont").appendChild(Mensaje)
       document.getElementById("Datos_Juego-cont").appendChild(PuntuacionFinal)

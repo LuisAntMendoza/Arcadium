@@ -31,3 +31,17 @@ function valCookie(nombre) {
     }
     return regreso;
 }
+var TetrisScores = valCookie("scoresTetris").split(",")
+console.log(TetrisScores);
+Top5Tetris=[];
+for (var i = 0; i < TetrisScores.length; i+=3) {
+  var Linea = $("<tr>")
+  Linea.append("<td>"+TetrisScores[i]+"</td>")
+  Linea.append("<td>"+TetrisScores[i+1]+"</td>")
+  var miliseg = TetrisScores[i+2];
+  var Fecha = new Date(miliseg);
+  console.log(Fecha);
+  Linea.append("<td>"+TetrisScores[i+2]+"</td>")
+  $("#Tetris").append(Linea)
+}
+console.log(Top5Tetris.sort())
