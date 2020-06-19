@@ -10,21 +10,15 @@ let Puntuacion=0;
 let vivo=false;
 
 
-
+//Con estas matriz se determinan las posiciones de los aliens
 let Posiciones=[
-		[0,1,2,3,4,5,6,7,8,9,10],
-		[1,2,3,4,5,6,7,8,9],
-		[2,3,4,5,6,7,8],
-		[3,4,5,6,7]
+	[1,2,3,4,5,6,7,8,9,10,11],
+	[2,3,4,5,6,7,8,9,10],
+	[3,4,5,6,7,8,9],
+	[4,5,6,7,8],
+	[5,6,7],
+	[6]
 ];
-
-let totalAliens=Posiciones.length*(Posiciones[0].length);
-console.log(totalAliens);
-var fecha=new Date()
-fecha.setTime(fecha.getTime()+1000*60*60*24*365)
-
-
-var fechaVieja=new Date()
 
 canvas.width = width;
 canvas.height = height;
@@ -39,68 +33,7 @@ perdiste.classList.add("Perdiste");
 document.getElementById("Space-Invaders").appendChild(puntaje);
 document.getElementById("Space-Invaders").appendChild(perdiste);
 
-
-function IniciarJuego() {
-	document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
-		prepararJuego();
-		Controles();
-	})
-}
-
-function volverIniciar() {
-	document.getElementById("Volver_a_jugar").addEventListener("click",()=>{
-		quitarClases("modal2","perder","jugando");
-		prepararJuego();
-
-	})
-}
-
-function Controles() {
-	document.getElementsByTagName("body")[0].addEventListener("keydown", (e) => {
-		if (e.key == "a" || e.key == "A") {
-			if (Nave.x-Nave.r!=0) {
-				Nave.x-=10;
-				dibujarNave(Nave.x,Nave.y,Nave.r)
-			}
-		}
-		if (e.key == "d" || e.key == "D") {
-			if (Nave.x+Nave.r!=width) {
-				Nave.x+=10;
-				dibujarNave(Nave.x,Nave.y,Nave.r)
-			}
-		}
-		//Disparo
-		if (e.key == "w" || e.key == "W") {
-			if (check!=true) {
-				check=true;
-				}
-			}
-		}
-	)
-}
-
-function prepararJuego() {
-	quitarClases("modal","menu","jugando");
-	console.log("Click");
-	Nave.x=width/2;
-	Ataque.pos_y=-100;
-	Disparo.pos_y=width*2;
-	vivo=true;
-	IniciarJuego();
-}
-
-
-
-
-function quitarClases(elemento,remover,agregar) {
-	document.getElementById(elemento).classList.remove(remover);
-	document.getElementById(elemento).classList.add(agregar);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////// Objetos	 ///////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//Decalaro las caracteristicas que tendran mis invasores, disparos y la nave
 let Nave = {
 	x: width/2,
 	y: height,
@@ -127,7 +60,101 @@ let Aliens = {
 	colorSec:"#ffffff",
 }
 
-//funcion para dibujar la Nave
+let num=Math.floor(Math.random()*Posiciones.length);
+let num2=Math.floor(Math.random()*Posiciones[num].length);
+
+let Ataque = {
+  size:10,
+  velocidad_y:-15,
+	pos_x:(num2+1)*separacion,
+	pos_y:(Math.floor(Math.random()*Posiciones.length)+1)*separacionVertical,
+	color:"red"
+}
+
+function cookieScore(puntuacion) {
+    let fecha = new Date().getTime();
+    let usuario = valCookie("NombreUs");
+    let valorCookie = [puntuacion, usuario, fecha];
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf("scoresSpace");
+    if (indice == -1) {
+        document.cookie = "scoresSpace=" + valorCookie;
+    } else {
+        let board2 = arrCookies2[indice + 1];
+
+        document.cookie = "scoresSpace=" + board2 + "," + valorCookie;
+    }
+}
+
+
+//Determina cuando se empezara el juego
+function IniciarJuego() {
+	document.getElementById("Iniciar_Juego").addEventListener("click",()=>{
+		prepararJuego();
+		Controles();
+	})
+}
+
+
+//Para poder volver a jugar
+function volverIniciar() {
+	document.getElementById("Volver_a_jugar").addEventListener("click",()=>{
+		quitarClases("modal2","perder","jugando");
+		prepararJuego();
+
+	})
+}
+
+
+//Establezco que teclas van a mover mi Nave
+function Controles() {
+	document.getElementsByTagName("body")[0].addEventListener("keydown", (e) => {
+		if (e.key == "a" || e.key == "A") {
+			if (Nave.x-Nave.r!=0) {
+				Nave.x-=10;
+				dibujarNave(Nave.x,Nave.y,Nave.r)
+			}
+		}
+		if (e.key == "d" || e.key == "D") {
+			if (Nave.x+Nave.r!=width) {
+				Nave.x+=10;
+				dibujarNave(Nave.x,Nave.y,Nave.r)
+			}
+		}
+		//Disparo
+		if (e.key == "w" || e.key == "W") {
+			if (check!=true) {
+				check=true;
+				}
+			}
+		}
+	)
+}
+
+
+//Sirve para establecer otra vez las posciones adecuadas
+function prepararJuego() {
+	quitarClases("modal","menu","jugando");
+	Nave.x=width/2;
+	Ataque.pos_y=-100;
+	Disparo.pos_y=width*2;
+	vivo=true;
+	IniciarJuego();
+}
+
+//Una funcion para hacer la desaparicon de modales más simple
+function quitarClases(elemento,remover,agregar) {
+	document.getElementById(elemento).classList.remove(remover);
+	document.getElementById(elemento).classList.add(agregar);
+}
+
+//funciones para dibujar en el canvas
 function dibujarNave(x,y,r) {
   context.beginPath();
   context.rect(x-(r/6), y-1.5*r, r/3, r);
@@ -162,12 +189,10 @@ function dibujarAlien(x, y,color, colorSec, colorSec2){
 	context.beginPath();
 }
 
-/////////////////////////////////////////////////////Nave///////////////////////////////////
-
 
 ////////////////////////////////////////////////////Disparos/////////////////////////////////
 
-
+//El disapro es solamente un rect al que le voy restando pixeles para hacer el efecto de movimiento
 function Disparar(){
 	if (check==true) {
 		Disparo.pos_y-=Disparo.velocidad_y;
@@ -177,6 +202,7 @@ function Disparar(){
 	}
 }
 
+//Detecta la posicion de los aliens y si es necesario cambiar su direccion
 function detectarWidth(posicion) {
 	if (posicion>=width || posicion<=0) {
 		check=false;
@@ -187,14 +213,9 @@ function detectarWidth(posicion) {
 ////////////////////////////////////////////////////Disparos/////////////////////////////////
 
 
-
 ////////////////////////////////////////////////////Invasores :o/////////////////////////////////
 
-
-
-
-
-
+//Saco la posicion de mis aliens al entrar a la matriz y sumarles o restar a velocidad establecida arriba
 function PosAliens() {
 	for (var i = 0; i < Posiciones.length; i++) {
 		for (var a = 0; a < Posiciones[i].length; a++) {
@@ -226,24 +247,13 @@ function InvasoresViven(){
 
 
 ////////////////////////////////////////////////////Los invasores Contraatacan :o/////////////////////////////////
-let num=Math.floor(Math.random()*Posiciones.length);
-let num2=Math.floor(Math.random()*Posiciones[num].length);
 
-
+//Estas dos funciones determinan el numero de invasores y con Math generan un numero aleatrio del cual sale un disparo de alien
 function azar() {
 	Ataque.pos_x=Posiciones[num][num2]*separacion+Aliens.size;
 	Ataque.pos_y=(num+1)*separacionVertical;
 	num=Math.floor(Math.random()*Posiciones.length);
 	num2=Math.floor(Math.random()*Posiciones[num].length);
-}
-
-
-let Ataque = {
-  size:10,
-  velocidad_y:-10,
-	pos_x:(num2+1)*separacion,
-	pos_y:(Math.floor(Math.random()*Posiciones.length)+1)*separacionVertical,
-	color:"red"
 }
 
 function contraatacar() {
@@ -260,30 +270,38 @@ function contraatacar() {
 ////////////////////////////////////////////////////Los invasores Contraatacan :o/////////////////////////////////
 
 ////////////////////////////////////////////////////Muertisimo/////////////////////////////////
-
-
-
-
-
 function Muertisimo() {
 	todoNormal();
 	quitarClases("modal2","jugando","perder");
-	fechaVieja.setTime(fecha.getTime()-1);
-	document.cookie = "tiempo="+muertos+";expires=" + fecha.toGMTString();
 	vivo=false;
 	volverIniciar();
+	cookieScore(puntuacion);
 }
 
+//Para cuando el afortunado jugador gane
+function Ganar() {
+	if (muertos==36) {
+		puntuacion=muertos*100;
+		todoNormal();
+		quitarClases("modal3","jugando","ganador")
+		vivo=false;
+		volverIniciar();
+		cookieScore(puntuacion);
+	}
+}
+
+//Reinicia mis variables y determina tu puntuacion
 function todoNormal() {
 	Ataque.pos_y=num2+1*separacionVertical;
 	azar();
 	puntuacion=muertos*100;
-	alert("Estas muertisimo, tienes "+puntuacion+" puntos")//Cambiar por un DOM
 	Posiciones=[
-		[0,1,2,3,4,5,6,7,8,9,10],
-		[1,2,3,4,5,6,7,8,9],
-		[2,3,4,5,6,7,8],
-		[3,4,5,6,7]
+		[1,2,3,4,5,6,7,8,9,10,11],
+		[2,3,4,5,6,7,8,9,10],
+		[3,4,5,6,7,8,9],
+		[4,5,6,7,8],
+		[5,6,7],
+		[6]
 	];
 	muertos = 0;
 }
@@ -299,10 +317,7 @@ function detectarDisparo(y,x) {
 					Disparo.pos_y=-20
 					Posiciones[i][a]="muerto";
 					muertos+=1;
-					document.cookie = "tiempo="+muertos+";expires=" + fecha.toGMTString()
 					puntaje.innerText="Llevas "+ muertos+ " muertos. Sigue así";
-					console.log(Posiciones[i]);
-					console.log("LLevas "+muertos+" muertos");
 				}
 			}
 		}
@@ -328,7 +343,7 @@ function juego() {
 		PosAliens();
 		InvasoresViven();
 		contraatacar();
-		console.log(vivo);
+		Ganar();
 	}
 }
 
@@ -339,5 +354,3 @@ function frame() {
 
 frame();
 IniciarJuego();
-
-//
