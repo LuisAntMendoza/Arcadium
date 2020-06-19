@@ -1,6 +1,6 @@
 @font-face {
   font-family: "gamer";
-  src: url(../Fonts/PressStart2P-Regular.ttf);
+  src: url(../../lib/fuentes/PressStart2P-Regular.ttf);
 }
 body{
   background-image: url(../img/Invasores.png);

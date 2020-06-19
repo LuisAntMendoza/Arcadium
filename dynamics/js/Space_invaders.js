@@ -5,20 +5,17 @@ let check = false;
 let muertos = 0;
 let velocidad=0.2;
 let separacion= 50;
-let separacionVertical= 50;
+let separacionVertical= 20;
 let Puntuacion=0;
 let vivo=false;
 
 
 
 let Posiciones=[
-		[0,1,2,3,4,5,6,7,8,9,10,11,12],
-		[1,2,3,4,5,6,7,8,9,10,11],
-		[2,3,4,5,6,7,8,9,10],
-		[3,4,5,6,7,8,9],
-		[4,5,6,7,8],
-		[5,6,7],
-		[6],
+		[0,1,2,3,4,5,6,7,8,9,10],
+		[1,2,3,4,5,6,7,8,9],
+		[2,3,4,5,6,7,8],
+		[3,4,5,6,7]
 ];
 
 let totalAliens=Posiciones.length*(Posiciones[0].length);
@@ -89,7 +86,7 @@ function prepararJuego() {
 	Ataque.pos_y=-100;
 	Disparo.pos_y=width*2;
 	vivo=true;
-	requestAnimationFrame(juego);
+	IniciarJuego();
 }
 
 
@@ -124,7 +121,7 @@ let Disparo = {
 let Aliens = {
 	x:20,
 	y:20,
-	velocidad: .04,
+	velocidad: .08,
 	size: 10,
 	color: "rgb(43, 255, 0)",
 	colorSec:"#ffffff",
@@ -282,14 +279,11 @@ function todoNormal() {
 	azar();
 	puntuacion=muertos*100;
 	alert("Estas muertisimo, tienes "+puntuacion+" puntos")//Cambiar por un DOM
-	let Posiciones=[
-			[0,1,2,3,4,5,6,7,8,9,10,11,12],
-			[1,2,3,4,5,6,7,8,9,10,11],
-			[2,3,4,5,6,7,8,9,10],
-			[3,4,5,6,7,8,9],
-			[4,5,6,7,8],
-			[5,6,7],
-			[6],
+	Posiciones=[
+		[0,1,2,3,4,5,6,7,8,9,10],
+		[1,2,3,4,5,6,7,8,9],
+		[2,3,4,5,6,7,8],
+		[3,4,5,6,7]
 	];
 	muertos = 0;
 }
@@ -334,11 +328,16 @@ function juego() {
 		PosAliens();
 		InvasoresViven();
 		contraatacar();
-  	requestAnimationFrame(juego);
 		console.log(vivo);
 	}
 }
 
+function frame() {
+	requestAnimationFrame(juego);
+	requestAnimationFrame(frame);
+}
+
+frame();
 IniciarJuego();
 
 //
