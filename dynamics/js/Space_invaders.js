@@ -36,8 +36,8 @@ puntaje.classList.add("Puntaje");
 perdiste.classList.add("Perdiste");
 
 
-body[0].appendChild(puntaje);
-body[0].appendChild(perdiste);
+document.getElementById("Space-Invaders").appendChild(puntaje);
+document.getElementById("Space-Invaders").appendChild(perdiste);
 
 
 function IniciarJuego() {

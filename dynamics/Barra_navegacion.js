@@ -14,10 +14,10 @@ let Contenido = $("<div>")
 Contenido.addClass("Creditos-cont")
 Contenido.append( "<h1 class='Titulo'>Creditos</h1>");
 Contenido.append( "<h2>Nombre del Equipo</h2>");
-Contenido.append( "<h4>Insertar Nombre aqui </h4>");
+Contenido.append( "<h4>Dinamita</h4>");
 Contenido.append( "<h2>Integrantes del equipo</h2>");
-Contenido.append( "<h4>Rodrigo</h4>","<h4>Mendoza Ramirez Luis Antonio</h4>");
-Contenido.append( "<h4>Vapnik</h4>","<h4>Villafranca Hernández Carlos Iván</h4>");
+Contenido.append( "<h4>Mendoza Ramirez Luis Antonio</h4>");
+Contenido.append( "<h4>Romero Lara Rodrigo </h4>","<h4>Villafranca Hernández Carlos Iván</h4>");
 Creditos.append(Contenido);
 $(".Top_bar").append(Creditos)
 

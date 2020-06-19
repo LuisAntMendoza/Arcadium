@@ -2,30 +2,46 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../libs/jQuery/jquery-3.5.1.min.js"></script>
+    <script src="../dynamics/Cookies.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../libs/fontawesome_free-5-13-0/css/all.css">
+    <link rel="stylesheet" href="../statics/css/Paletas.css">
+    <link rel="stylesheet" href="../statics/css/Top_nav_bar.css">
+    <link rel="stylesheet" href="../statics/css/Creditos_modales.css">
     <link rel="stylesheet" href="../statics/css/Space_invaders.css">
+    <title>Arcadium | Space Invaders </title>
     <!--<link rel="stylesheet" href="../lib/fontawesome">-->
-    <title></title>
   </head>
   <body>
-    <div id="modal" class="menu">
-    <div id="Datos_Juego-cont" class="Datos-cont">
-      <h1>Bienvenido a</h1>
-      <span class="Nombre">Space Invaders</span><br>
-      <button type="button" id="Iniciar_Juego" name="button">Jugar</button>
-      <br>
-    </div>
-  </div>
-  <div id="modal2" class="jugando">
-    <div>
-      <h1>Usted caballero ha fracasado en su misión</h1>
-      <span>¿Le gustaría volver a intentar?</span><br>
-      <button type="button" id="Volver_a_jugar" name="button">Jugar de nuez</button>
-      <br>
-    </div>
-  </div>
-    <div class="">
-      <canvas id="canvas"></canvas>
-    </div>
+    <nav class="Top_bar">
+      <span class="Boton" id="Inicio"><i class="fas fa-home"></i>Inicio</span>
+      <span class="Boton" id="Juegos"><i class="fas fa-gamepad"></i>Juegos</span>
+      <span class="Boton" id="Puntajes"><i class="fas fa-star"></i>Puntajes</span>
+      <span class="Boton" id="Creditos"><i class="fas fa-laptop-code"></i>Créditos</span>
+    </nav>
+    <section id="Space-Invaders">
+      <div id="modal" class="menu">
+        <div id="Datos_Juego-cont" class="Datos-cont">
+          <h1>Bienvenido a</h1>
+          <span class="Nombre">Space Invaders</span><br>
+          <button type="button" id="Iniciar_Juego" name="button">Jugar</button>
+          <br>
+        </div>
+      </div>
+      <div id="modal2" class="jugando">
+        <div>
+          <h1>Usted caballero ha fracasado en su misión</h1>
+          <span>¿Le gustaría volver a intentar?</span><br>
+          <button type="button" id="Volver_a_jugar" name="button">Jugar de nuez</button>
+          <br>
+        </div>
+      </div>
+      <div class="">
+        <canvas id="canvas"></canvas>
+      </div>
+    </section>
+    <script src="../dynamics/Barra_navegacion.js" charset="utf-8"></script>
     <script type="text/javascript" src="../dynamics/JS/Space_invaders.js"></script>
   </body>
 </html>
