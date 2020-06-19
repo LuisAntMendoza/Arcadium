@@ -51,6 +51,8 @@ function llenarBuscaminas() {
     for (var i = 0; i < arrScoresSort.length; i++) {
         if (arrScoresSort.length != 0) {
             let indice = cookieSplit.indexOf(arrScoresSort[i]);
+            let posicion = $("<td>");
+            $(posicion).text(i+1);
             let fila = $("<tr>");
             let jugador = $("<td>");
             $(jugador).text(cookieSplit[indice + 1]);
@@ -59,7 +61,7 @@ function llenarBuscaminas() {
             let tiempo = $("<td>");
             let valTiempo = new Date(parseInt(cookieSplit[indice + 2]));
             $(tiempo).text(valTiempo.toLocaleString());
-            $(fila).append(jugador, puntuacion, tiempo);
+            $(fila).append(posicion, jugador, puntuacion, tiempo);
             $("#body-Buscaminas").append(fila);
         }
     }
@@ -84,6 +86,8 @@ function llenarTetris() {
     for (var i = 0; i < arrScoresSort.length; i++) {
         if (arrScoresSort.length != 0) {
             let indice = cookieSplit.indexOf(arrScoresSort[i]);
+            let posicion = $("<td>");
+            $(posicion).text(i+1);
             let fila = $("<tr>");
             let jugador = $("<td>");
             $(jugador).text(cookieSplit[indice + 1]);
@@ -92,7 +96,7 @@ function llenarTetris() {
             let tiempo = $("<td>");
             let valTiempo = new Date(parseInt(cookieSplit[indice + 2]));
             $(tiempo).text(valTiempo.toLocaleString());
-            $(fila).append(jugador, puntuacion, tiempo);
+            $(fila).append(posicion, jugador, puntuacion, tiempo);
             $("#body-Tetris").append(fila);
         }
     }
@@ -117,6 +121,8 @@ function llenarSpace() {
     for (var i = 0; i < arrScoresSort.length; i++) {
         if (arrScoresSort.length != 0) {
             let indice = cookieSplit.indexOf(arrScoresSort[i]);
+            let posicion = $("<td>");
+            $(posicion).text(i+1);
             let fila = $("<tr>");
             let jugador = $("<td>");
             $(jugador).text(cookieSplit[indice + 1]);
@@ -125,7 +131,7 @@ function llenarSpace() {
             let tiempo = $("<td>");
             let valTiempo = new Date(parseInt(cookieSplit[indice + 2]));
             $(tiempo).text(valTiempo.toLocaleString());
-            $(fila).append(jugador, puntuacion, tiempo);
+            $(fila).append(posicion, jugador, puntuacion, tiempo);
             $("#body-Space").append(fila);
         }
     }

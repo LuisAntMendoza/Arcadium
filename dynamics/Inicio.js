@@ -11,10 +11,5 @@ $("#Enviar_juegos").click(()=>{
   window.location ="../templates/Juegos.html"
 })
 $("#Enviar_Puntajes").click(()=>{
-  console.log("Enviar al los maximos puntajes");
-  console.log("Cambio ruta 2");
-})
-$("#Enviar_Puntajes").click(()=>{
-  console.log("Enviar al los maximos puntajes");
-  console.log("Cambio ruta 2");
+  window.location ="../templates/Puntajes.html"
 })
