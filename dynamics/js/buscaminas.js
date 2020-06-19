@@ -1,16 +1,14 @@
 function cookieTablero(board) {
-    board2 = board.split(",");
-    console.log(board2);
+    let board2 = board.split(",");
     let tabla = [];
     let j = 0;
     for (let i = 0; i < largo; i++) {
         tabla[i] = [];
         for (var k = 0; k < ancho; k++) {
-            tabla[i][k] = board2[j]
+            tabla[i][k] = board2[j];
             j++;
         }
     }
-    console.log(tabla);
     return tabla;
 }
 
@@ -33,7 +31,6 @@ function inicializaMatriz(x, y) {
             tabla[i][j] = 0;
         }
     }
-    console.log(tabla)
     return tabla;
 }
 
@@ -85,7 +82,6 @@ function mostrarNumero(e) {
     divObj = $("#" + myid);
     arrClic[parseInt(auxstr[0], 10)][parseInt(auxstr[1], 10)] = 1;
     document.cookie = "arrClicBuscaminas=" + arrClic;
-    console.log(auxstr);
     if (minas[parseInt(auxstr[0], 10)][parseInt(auxstr[1], 10)] == 0) {
         $(divObj).css("background-color", "rgb(210, 210, 210)");
         $(divObj).css("background-image", "none");
@@ -98,10 +94,10 @@ function mostrarNumero(e) {
         } else {
             $(divObj).css("background-image", "url(../statics/img/bomba.jpg)");
             abrirTablero(minas);
+            perder();
             borrarCookies();
             $($("#tablerominas").children()).off("click");
             $($("#tablerominas").children()).off("contextmenu");
-            perder();
         }
     }
 }
@@ -341,6 +337,9 @@ function perder() {
 }
 
 function puntaje() {
+    if (score == undefined) {
+        score = 0;
+    }
     if ($("#dificultad").val() == "f") {
         score += 500;
     } else if ($("#dificultad").val() == "m") {
@@ -349,6 +348,28 @@ function puntaje() {
         score += 1500;
     } else if ($("#dificultad").val() == "p") {
         score = "Lo sentimos, no hay puntuaciones en el modo personalizado";
+    }
+    cookieScore(score);
+}
+
+function cookieScore(puntuacion) {
+    let fecha = new Date().getTime();
+    let usuario = valCookie("NombreUs");
+    let valorCookie = [puntuacion, usuario, fecha];
+    let cookies = document.cookie;
+    let arrCookies = cookies.split("; ");
+    let arrCookies2 = [];
+    for (let i = 0; i < arrCookies.length; i++) {
+        arrCookies2.push(arrCookies[i].split("=")[0]);
+        arrCookies2.push(arrCookies[i].split("=")[1]);
+    }
+    let indice = arrCookies2.indexOf("scoresBuscaminas");
+    if (indice == -1) {
+        document.cookie = "scoresBuscaminas=" + valorCookie;
+    } else {
+        let board2 = arrCookies2[indice + 1];
+
+        document.cookie = "scoresBuscaminas=" + board2 + "," + valorCookie;
     }
 }
 
@@ -461,12 +482,4 @@ $(document).ready(() => {
             $(".fade-body").css("display", "block");
         }, 450);
     })
-
-
-
-
-
-
-
-
 });

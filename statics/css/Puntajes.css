@@ -1,0 +1,57 @@
+table {
+    width: 60%;
+}
+
+table, th, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.Encabezado {
+    background-color: #555555;
+    font-family: "PressStart2P-Regular";
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    text-shadow: 4px 4px 8px #000000;
+}
+
+.puntajes-juegos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.subEnc {
+    background-color: #555555;
+    font-family: "PressStart2P-Regular";
+    font-size: 12px;
+    width: 100%;
+    color: white;
+    margin: 20px auto;
+    text-align: center;
+    padding: 5px 0;
+    text-shadow: 4px 4px 8px #000000;
+}
+
+#Mejores-Puntajes {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#Tetris {
+    background-color: #831279;
+}
+
+#Buscaminas {
+    background-color: rgb(210, 210, 210);
+}
+
+#Space {
+    background-color: rgba(93, 42, 131, 0.42);
+}

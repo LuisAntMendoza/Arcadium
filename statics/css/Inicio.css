@@ -1,7 +1,7 @@
 .carrFade {
     background-color: black;
     height: 450px;
-    opacity: 0.5;
+    opacity: 0.7;
     position: absolute;
     top: 0;
     width: 100%;
@@ -12,6 +12,7 @@
     font-size: 15px;
     color: white;
     height: 450px;
+    padding: 0 40px;
     position: absolute;
     text-align: center;
     top: 0;
@@ -24,6 +25,7 @@
     position: relative;
     width: 60%;
 }
+
 .bienvenida {
     background-color: #555555;
     border-radius: 30px;
@@ -33,15 +35,16 @@
     text-align: center;
     width: 70%;
 }
+
 .botonesInicio {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 50px;
-
 }
+
 .botonInicio {
-    box-shadow: 5px 12px  #343434;
+    box-shadow: 5px 12px #343434;
     cursor: pointer;
     background-color: #555555;
     border-radius: 30px;
@@ -51,48 +54,57 @@
     width: 35%;
     transition: box-shadow .5s linear;
 }
-.botonInicio:hover{
-  box-shadow: 5px 5px  #343434;
+
+.botonInicio:hover {
+    box-shadow: 5px 5px #343434;
 }
+
 .carrTexto h3 {
     margin-top: 15%;
 }
-.bienvenida{
-  font-family: "PressStart2P-Regular";
+
+.bienvenida {
+    font-family: "PressStart2P-Regular";
 }
-#Cerrar-ses{
-  top: 80px;
-  background-color: #d91212;
-  border-radius: 0px 7px 7px 0px;
-  color: white;
-  display: flex;
-  flex-direction: row-reverse;
-  height: 20px;
-  font-size: 20px;
-  left: -150px;
-  opacity: 0.7;
-  padding: 15px;
-  position: absolute;
-  transition: all 0.3s;
-  font-family: "RobotoMono-Medium";
-  width: 250px;
-  height: 50px;
+
+#Cerrar-ses {
+    top: 80px;
+    background-color: #d91212;
+    border-radius: 0px 7px 7px 0px;
+    color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    height: 20px;
+    font-size: 20px;
+    left: -150px;
+    opacity: 0.7;
+    padding: 15px;
+    position: absolute;
+    transition: all 0.3s;
+    font-family: "RobotoMono-Medium";
+    width: 250px;
+    height: 50px;
 }
-#Cerrar-ses>i{
-  padding: 0 10px;
+
+#Cerrar-ses>i {
+    padding: 0 10px;
 }
-#Cerrar-ses:Hover{
-  cursor: pointer;
-  left: 0;
-  opacity: 1;
-  background-color: #bb0707;
+
+#Cerrar-ses:Hover {
+    cursor: pointer;
+    left: 0;
+    opacity: 1;
+    background-color: #bb0707;
 }
-#Cerrar-ses:hover> span{
-  display: inherit;
+
+#Cerrar-ses:hover>span {
+    display: inherit;
 }
-#Cerrar-ses>span{
-  display: none;
+
+#Cerrar-ses>span {
+    display: none;
 }
+
 #carruselInicio {
     z-index: 0;
 }
@@ -105,12 +117,14 @@
     height: 450px;
     width: 100%;
 }
+
 @font-face {
-  font-family: "PressStart2P-Regular";
-  src: url("../Fonts/PressStart2P-Regular.ttf");
+    font-family: "PressStart2P-Regular";
+    src: url("../Fonts/PressStart2P-Regular.ttf");
 }
-@media screen AND (max-width:900px){
-  h1{
-    font-size: 30px;
-  }
+
+@media screen AND (max-width:900px) {
+    h1 {
+        font-size: 30px;
+    }
 }
