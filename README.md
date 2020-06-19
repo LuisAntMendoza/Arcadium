@@ -8,15 +8,27 @@
 ### Instalacion Windows 
 1. Descargar o clona el repositorio dentro de tu dispositivo
 2. [Descarga Xampp](https://www.apachefriends.org/xampp-files/7.4.7/xampp-windows-x64-7.4.7-0-VC15-installer.exe) en la version 7.4.7
-3. Situa la carpeta "ProyectoJS-CSS" o equivalente* dentro de la carpeta "Xampp/htdocs"
-4. Activa "Apache" en el Panel de Control de Xampp (para avilitar las cookies :cookie:)
+3. Situa la carpeta "Arcadium" o equivalente* dentro de la carpeta "Xampp/htdocs"
+4. Activa "Apache" en el Panel de Control de Xampp (para habilitar las cookies :cookie:)
 5. Ingresa a tu navegador de preferencia 
-6. Inserta en la barra de navegacion la ruta "http://localhost/ProyectoJS-CSS/" o equivalente*
+6. Inserta en la barra de navegacion la ruta "http://localhost/Arcadium/" o equivalente*
 7. Disfruta de la experiencia !!
+
+*(dependiendo del nombre de tu carpeta donde guardaste el proyecto)
+
+### Instalación Mac
+1. Descargar o clona el repositorio dentro de tu dispositivo
+2. [Descarga MAMP](https://www.mamp.info/en/downloads/) en la versión 5.7
+3. Situa la carpeta "Arcadium" o equivalente* dentro de la carpeta "MAMP/htdocs"
+4. Activa "Start Servers" en el Panel de Control de MAMP
+5. Ingresa a tu navegador de preferencia 
+6. Inserta en la barra de navegacion la ruta "http://localhost/Arcadium/" o equivalente*
+7. Disfruta de la experiencia !!
+
 *(dependiendo del nombre de tu carpeta donde guardaste el proyecto)
 
 ## Guia de Configuracion
-* Avilitar el uso de cookies en tu navegador 
+* Habilitar el uso de cookies en tu navegador 
 
 ## Características del proyecto
 
