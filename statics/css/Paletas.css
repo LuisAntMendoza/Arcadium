@@ -32,6 +32,9 @@
 #Lista_Juegos.Paleta_1{
   background-color: rgba(161, 91, 159, 0.5);
 }
+#Mejores-Puntajes.Paleta_1 > .puntajes-juegos{
+  background-color: rgba(161, 91, 159, 0.5);
+}
 #Mejores-Puntajes.Paleta_1> .puntajes-juegos> .subEnc{
   background-color: #A15B9F;
 }
@@ -68,6 +71,9 @@
   background-color: #13289D;
 }
 #Lista_Juegos.Paleta_2{
+  background-color: rgba(108, 147, 204, 0.5);
+}
+#Mejores-Puntajes.Paleta_2 > .puntajes-juegos{
   background-color: rgba(108, 147, 204, 0.5);
 }
 #Mejores-Puntajes.Paleta_2 > .puntajes-juegos> .subEnc{
