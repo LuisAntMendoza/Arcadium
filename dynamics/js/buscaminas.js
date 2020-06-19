@@ -437,6 +437,7 @@ $(document).ready(() => {
                 minas = inicializaMatriz(ancho, largo);
                 arrClic = inicializaMatriz(ancho, largo);
                 arrBanderas = inicializaMatriz(ancho, largo);
+                score = undefined;
                 cargarTablero();
             } else {
                 $("#error-pers").text("El ancho de su pantalla no soporta el numero de casillas de ancho ingresado.");
