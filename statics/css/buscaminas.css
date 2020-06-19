@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .contControles {
@@ -205,6 +206,21 @@
     cursor: pointer;
 }
 
+#mensaje-tablero {
+    color: red;
+}
+
+#cerrar-juego {
+    background-color: red;
+    cursor: pointer;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+#error-pers {
+    color: red;
+}
+
 @font-face {
     src: url(../Fonts/ARCADE_N.TTF);
     font-family: "Arcade";
@@ -247,5 +263,24 @@
 
     to {
         opacity: 0.6;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .cont-bienvenida, .contControles {
+        width: 70%;
+        margin: 50px auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .botones {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .botones div {
+        width: 50%;
+        margin: 10px auto;
     }
 }

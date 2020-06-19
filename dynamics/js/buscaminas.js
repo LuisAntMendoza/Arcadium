@@ -98,10 +98,10 @@ function mostrarNumero(e) {
         } else {
             $(divObj).css("background-image", "url(../statics/img/bomba.jpg)");
             abrirTablero(minas);
-            alert("Perdiste =(");
             borrarCookies();
-            $("div").off("click");
-            $("div").off("contextmenu");
+            $($("#tablerominas").children()).off("click");
+            $($("#tablerominas").children()).off("contextmenu");
+            perder();
         }
     }
 }
@@ -247,6 +247,7 @@ function guardarCookies(tablero) {
     document.cookie = "bombasBuscaminas=" + bombas;
     document.cookie = "arrClicBuscaminas=" + arrClic;
     document.cookie = "arrBanderasBuscaminas=" + arrBanderas;
+    document.cookie = "dificultadBuscaminas=" + dificultad;
 }
 
 function borrarCookies() {
@@ -258,6 +259,7 @@ function borrarCookies() {
     document.cookie = "bombasBuscaminas=0;expires=" + time.toGMTString();
     document.cookie = "arrClicBuscaminas=0;expires=" + time.toGMTString();
     document.cookie = "arrBanderasBuscaminas=0;expires=" + time.toGMTString();
+    document.cookie = "dificultadBuscaminas=0;expires=" + time.toGMTString();
 }
 
 function cargarTablero() {
@@ -280,9 +282,10 @@ function valEndGame(tablero) {
             }
         }
     }
+    score = bombasEnc * 100;
     if (bombasEnc == bombas) {
-        alert("Has ganado");
         borrarCookies();
+        ganar();
     }
 }
 
@@ -321,12 +324,42 @@ function cookiesBanderas(tablero) {
     }
 }
 
+function ganar() {
+    $("#tablerominas").html("");
+    $("#tablerominas").css("border", "none");
+    $("#mensaje-tablero").css("color", "greenyellow");
+    $("#bombasRest").css("display", "none");
+    puntaje()
+    $("#mensaje-tablero").html("<h4>Felicidades, ha encontrado todas las bombas!</h4><h4>Su puntaje ha sido: " + score + "</h4>")
+
+}
+
+function perder() {
+    puntaje();
+    $("#mensaje-tablero").html("<h4>Has detonado una bomba! Vuelve a intentarlo</h4><h4>Su puntaje ha sido: " + score + "</h4>")
+
+}
+
+function puntaje() {
+    if ($("#dificultad").val() == "f") {
+        score += 500;
+    } else if ($("#dificultad").val() == "m") {
+        score += 1000;
+    } else if ($("#dificultad").val() == "d") {
+        score += 1500;
+    } else if ($("#dificultad").val() == "p") {
+        score = "Lo sentimos, no hay puntuaciones en el modo personalizado";
+    }
+}
+
 let minas = undefined;
 let bombas = undefined;
 let ancho = undefined;
 let largo = undefined;
 let arrClic = undefined;
 let arrBanderas = undefined;
+let score = undefined;
+let dificultad = undefined;
 $(document).ready(() => {
     if (valCookie("tableroBuscaminas") != null) {
         bombas = valCookie("bombasBuscaminas");
@@ -335,6 +368,7 @@ $(document).ready(() => {
         minas = cookieTablero(valCookie("tableroBuscaminas"));
         arrClic = cookieTablero(valCookie("arrClicBuscaminas"));
         arrBanderas = cookieTablero(valCookie("arrBanderasBuscaminas"));
+        dificultad = valCookie("dificultadBuscaminas");
         if (validarTamaño() == true) {
             $("#tablerominas").css("width", (ancho * 30) + (ancho * 2) + "px");
             crearTablero(ancho, largo);
@@ -342,29 +376,35 @@ $(document).ready(() => {
             cookiesBanderas(minas);
             mostrarBanderas();
         } else {
-            $("#tablerominas").html("<h1>El ancho de su pantalla no soporta el número de casillas de ancho ingresado</h1>");
+            $("#error-pers").text("El ancho de su pantalla no soporta el numero de casillas de ancho ingresado.");
         }
     }
     $("#jugar").on("click", (e) => {
         e.preventDefault();
         $("#tablerominas").html("");
         $("#tablerominas").css("border", "1px solid black");
+        $("#mensaje-tablero").html("");
+        $("#bombasRest").css("display", "block")
         if ($("#dificultad").val() == "f") {
             bombas = 10;
             ancho = 8;
             largo = 8;
+            dificultad = "f";
         } else if ($("#dificultad").val() == "m") {
             bombas = 40;
             ancho = 16;
             largo = 16;
+            dificultad = "m";
         } else if ($("#dificultad").val() == "d") {
             bombas = 99;
             ancho = 30;
             largo = 16;
+            dificultad = "d";
         } else if ($("#dificultad").val() == "p") {
             bombas = $("#bombas").val();
             ancho = $("#ancho").val();
             largo = $("#largo").val();
+            dificultad = "p";
         }
         if (bombas >= ancho * largo) {
             $("#error-pers").text("Por favor, reduzca el numero de bombas.");
@@ -399,6 +439,10 @@ $(document).ready(() => {
             $("#contPersonalizado").css("display", "none");
             $("#dificultad").css("border", "4px solid red");
         }
+    })
+    $("#cerrar-juego").on("click", () => {
+        borrarCookies();
+        window.location = "../index.html";
     })
     //Modal
     $("#cerrar-modal").on("click", () => {
